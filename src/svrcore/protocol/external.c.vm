@@ -1,0 +1,182 @@
+
+\#include "protocol/external.h"
+\#include "svrcore.h"
+\#include "shared/util.h"
+
+/*int   pack_update_object(packet**dst,list_t *block_list)
+{
+	list_t *pos = NULL;
+	uint16 block_num=0;
+
+	ASSERT(dst);
+	*dst = external_protocol_new_packet(SMSG_UPDATE_OBJECT);
+	packet_write(*dst,(char*)&block_num,sizeof(block_num));
+	list_for_each(pos,block_list){
+		packet *pkt = list_entry(pos,packet,s);
+		packet_write(*dst,pkt->content,pkt->wpos);
+		(*((uint16*)(*dst)->content))++;
+	}	
+	update_packet_len(*dst);
+	return 0;
+}*/
+
+char* OpcodeName[NUM_MSG_TYPES+1] = {
+#foreach( $m in $msgs )
+#if($m.Name.Substring(0,2)!="__")
+    "$str_tool.GetMsgType($m.Type)_$m.Name.ToUpper()",
+#else
+    "NULL_HANDLER",
+#end    
+#end
+"NUM_MSG_TYPES"
+};
+
+const char *GetOpcodeName(uint16 opt)
+{
+	if(opt>=NUM_MSG_TYPES)
+		return "";
+	return OpcodeName[opt];
+}
+
+
+#macro(pack_func_param_string $m)
+#foreach($i in $m.MsgParas)##
+#if($i.type == "ByteArray")##
+,packet *$i.Name##
+#elseif($i.IsArray&&$i.type == "String")##
+,const char **$i.Name, uint16 len_$velocityCount##
+#elseif($i.type == "String")##
+,char const*$i.Name##
+#elseif($i.IsArray)##&&$str_tool.IsStruct($i.type)==0
+, $i.type *$i.Name , uint16 len_$velocityCount##
+#elseif($str_tool.IsStruct($i.type))##
+, $i.type *$i.Name##
+#else##
+,$i.type $i.Name##
+#end##
+#end
+#end
+
+#macro(unpack_func_param_string $m)
+#foreach($i in $m.MsgParas)
+#if($i.type == "ByteArray")##
+,packet *$i.Name##
+#elseif($i.IsArray&&$i.type == "String")##
+,const char **$i.Name, uint16 *len_$velocityCount##
+#elseif($i.type == "String")##
+,char **$i.Name##
+#elseif($i.IsArray)##&&$str_tool.IsStruct($i.type)==0
+, $i.type **$i.Name , uint16 *len_$velocityCount##
+#elseif($str_tool.IsStruct($i.type))##
+, $i.type **$i.Name##
+#else##
+,$i.type *$i.Name##
+#end
+#end
+#end
+
+/******************************************************************/
+/*以下为协议*/
+/******************************************************************/
+#foreach( $m in $msgs )
+#if($m.Name.Substring(0,2)!="__"&&$m.Name!="update_object")
+$m.desc
+int   pack_$m.Name (packet**dst #pack_func_param_string($m))
+{
+#set($has_array_string = 0)
+#foreach($i in $m.MsgParas)
+#if($i.IsArray&&$i.type == "String")
+#set($has_array_string = 1)	
+#end
+#end
+#if($has_array_string == 1)
+	uint16 i = 0;
+#end
+	*dst = external_protocol_new_packet($str_tool.GetMsgType($m.Type)_$m.Name.ToUpper());
+	ASSERT((*dst)->head->optcode == $str_tool.GetMsgType($m.Type)_$m.Name.ToUpper());	
+#foreach($i in $m.MsgParas)
+#if($i.type == "ByteArray")
+	packet_write(*dst,(char*)$i.Name ->content,$i.Name ->wpos);
+#elseif($i.IsArray&&$i.type == "String")
+	packet_write(*dst,(char *)&len_$velocityCount, sizeof(uint16));
+	for(;i < len_$velocityCount; i++)
+	{
+		packet_write_str(*dst,*($i.Name + i));	
+	}
+#elseif($i.type == "String")
+	packet_write_str(*dst,$i.Name);		
+#elseif($i.IsArray)
+	packet_write(*dst,(char *)&len_$velocityCount, sizeof(uint16));
+	packet_write(*dst,(char *)$i.Name, sizeof($i.type) * len_$velocityCount);
+#elseif($str_tool.IsStruct($i.type))
+	packet_write(*dst,(char*)$i.Name,sizeof($i.type));
+#else
+	packet_write(*dst,(char *)&$i.Name,sizeof($i.type));
+#end
+#end	
+		
+	update_packet_len(*dst);
+	return 0;	
+}
+#if($m.MsgParas.Count > 0)
+int   unpack_$m.Name (packet *src #unpack_func_param_string($m))
+{	
+	int ret=0;
+#set($has_array_string = 0)
+#foreach($i in $m.MsgParas)
+#if($i.IsArray&&$i.type == "String")
+#set($has_array_string = 1)	
+#end
+#end
+#if($has_array_string == 1)
+	uint16 i = 0;
+#end
+#foreach($i in $m.MsgParas)
+#if($i.type == "ByteArray")
+	packet_write($i.Name,(char*)(src->content + src->rpos),src->wpos - src->rpos);
+#elseif($i.IsArray&&$i.type == "String")
+	ret = packet_read(src,(char*)len_$velocityCount,sizeof(uint16));
+	if(ret) return -1;
+	if(*len_$velocityCount > EXTERNAL_PACKET_STR_ARRAY_MAX_LEN)
+		return -1;
+	for(; i < *len_$velocityCount; i++)
+	{
+		char* p ;
+		ret = packet_read_str(src,&p);
+		if(ret) break;
+		$i.Name[i]=p;
+	}
+#elseif($i.type == "String")
+	ret = packet_read_str(src,$i.Name);
+	if(ret) return -1;
+#elseif($i.IsArray)
+	ret = packet_read(src,(char*)len_$velocityCount,sizeof(uint16));
+	if(ret) return -1;
+	*$i.Name = ($i.type *)(src->content+src->rpos);
+	src->rpos += sizeof($i.type) * (*len_$velocityCount);
+	if(src->rpos > src->wpos) return -1;
+#elseif($str_tool.IsStruct($i.type))
+	*$i.Name = ($i.type*)(src->content+src->rpos);
+	src->rpos += sizeof($i.type);
+	if(src->rpos > src->wpos) return -1;
+#else
+	ret = packet_read(src,(char*)($i.Name),sizeof($i.type));
+	if(ret) return -1;
+#end
+#end		
+	return ret;
+}
+#end	
+#end
+#end
+
+TEA_SVRCORE_API	int pack_rand_send_msg( packet**dst ,const char* message )
+{
+	int type = irand(MSG_NULL_ACTION,NUM_MSG_TYPES);
+	//int type = irand(MSG_NULL_ACTION,CMSG_ITEM_UPGRADE-1);
+	*dst = external_protocol_new_packet(type);
+	ASSERT((*dst)->head->optcode == type);	
+	packet_write_str(*dst,message);		
+	update_packet_len(*dst);
+	return type;	
+}

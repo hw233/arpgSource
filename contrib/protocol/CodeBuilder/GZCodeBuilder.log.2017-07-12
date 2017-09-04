@@ -1,0 +1,405 @@
+2017-07-12 11:06:04,093 - SimpleLog4NetLogSystem initialized using logfile 'GZCodeBuilder.log'
+2017-07-12 11:06:04,110 - ************************************************************** 
+2017-07-12 11:06:04,110 - Starting NVelocity v0.4.1
+2017-07-12 11:06:04,110 - RuntimeInstance initializing.
+2017-07-12 11:06:04,110 - Default Properties File: NVelocity.Runtime.Defaults.nvelocity.properties
+2017-07-12 11:06:04,110 - Trying to use logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 11:06:04,110 - Using logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 11:06:04,114 - Default ResourceManager initializing. (NVelocity.Runtime.Resource.ResourceManagerImpl)
+2017-07-12 11:06:04,118 - Resource Loader Instantiated: NVelocity.Runtime.Resource.Loader.FileResourceLoader
+2017-07-12 11:06:04,121 - FileResourceLoader : initialization starting.
+2017-07-12 11:06:04,121 - FileResourceLoader : adding path 'F:\arpg\contrib\protocol\\..\..\\src\svrcore\protocol'
+2017-07-12 11:06:04,121 - FileResourceLoader : initialization complete.
+2017-07-12 11:06:04,122 - ResourceCache : initialized. (NVelocity.Runtime.Resource.ResourceCacheImpl)
+2017-07-12 11:06:04,122 - Default ResourceManager initialization complete.
+2017-07-12 11:06:04,130 - Loaded System Directive: NVelocity.Runtime.Directive.Include,NVelocity
+2017-07-12 11:06:04,130 - Loaded System Directive: NVelocity.Runtime.Directive.Foreach,NVelocity
+2017-07-12 11:06:04,131 - Loaded System Directive: NVelocity.Runtime.Directive.Macro,NVelocity
+2017-07-12 11:06:04,131 - Loaded System Directive: NVelocity.Runtime.Directive.Literal,NVelocity
+2017-07-12 11:06:04,131 - Loaded System Directive: NVelocity.Runtime.Directive.Parse,NVelocity
+2017-07-12 11:06:04,139 - Created: 20 parsers.
+2017-07-12 11:06:04,143 - Velocimacro : initialization starting.
+2017-07-12 11:06:04,143 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-07-12 11:06:04,143 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-07-12 11:06:04,143 - Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+2017-07-12 11:06:04,143 - Velocimacro : messages on  : VM system will output logging messages
+2017-07-12 11:06:04,143 - Velocimacro : autoload off  : VM system will not automatically reload global library macros
+2017-07-12 11:06:04,143 - Velocimacro : initialization complete.
+2017-07-12 11:06:04,143 - NVelocity successfully started.
+2017-07-12 11:06:04,336 - Velocimacro : added new VM : #pack_func_param_string( m ) : source = external.c.vm
+2017-07-12 11:06:04,336 - Velocimacro : added new VM : #unpack_func_param_string( m ) : source = external.c.vm
+2017-07-12 11:06:04,368 - ResourceManager : found external.c.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 11:06:04,483 - Velocimacro : added new VM : #pack_func_param_string_call( m ) : source = external.h.vm
+2017-07-12 11:06:04,486 - ResourceManager : found external.h.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 11:06:04,769 - SimpleLog4NetLogSystem initialized using logfile 'GZCodeBuilder.log'
+2017-07-12 11:06:04,785 - ************************************************************** 
+2017-07-12 11:06:04,785 - Starting NVelocity v0.4.1
+2017-07-12 11:06:04,785 - RuntimeInstance initializing.
+2017-07-12 11:06:04,785 - Default Properties File: NVelocity.Runtime.Defaults.nvelocity.properties
+2017-07-12 11:06:04,785 - Trying to use logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 11:06:04,785 - Using logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 11:06:04,789 - Default ResourceManager initializing. (NVelocity.Runtime.Resource.ResourceManagerImpl)
+2017-07-12 11:06:04,793 - Resource Loader Instantiated: NVelocity.Runtime.Resource.Loader.FileResourceLoader
+2017-07-12 11:06:04,797 - FileResourceLoader : initialization starting.
+2017-07-12 11:06:04,797 - FileResourceLoader : adding path 'F:\arpg\contrib\protocol\\..\..\\contrib\scripts\share'
+2017-07-12 11:06:04,797 - FileResourceLoader : initialization complete.
+2017-07-12 11:06:04,798 - ResourceCache : initialized. (NVelocity.Runtime.Resource.ResourceCacheImpl)
+2017-07-12 11:06:04,798 - Default ResourceManager initialization complete.
+2017-07-12 11:06:04,805 - Loaded System Directive: NVelocity.Runtime.Directive.Include,NVelocity
+2017-07-12 11:06:04,806 - Loaded System Directive: NVelocity.Runtime.Directive.Foreach,NVelocity
+2017-07-12 11:06:04,806 - Loaded System Directive: NVelocity.Runtime.Directive.Macro,NVelocity
+2017-07-12 11:06:04,806 - Loaded System Directive: NVelocity.Runtime.Directive.Literal,NVelocity
+2017-07-12 11:06:04,806 - Loaded System Directive: NVelocity.Runtime.Directive.Parse,NVelocity
+2017-07-12 11:06:04,815 - Created: 20 parsers.
+2017-07-12 11:06:04,819 - Velocimacro : initialization starting.
+2017-07-12 11:06:04,819 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-07-12 11:06:04,819 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-07-12 11:06:04,819 - Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+2017-07-12 11:06:04,819 - Velocimacro : messages on  : VM system will output logging messages
+2017-07-12 11:06:04,819 - Velocimacro : autoload off  : VM system will not automatically reload global library macros
+2017-07-12 11:06:04,819 - Velocimacro : initialization complete.
+2017-07-12 11:06:04,819 - NVelocity successfully started.
+2017-07-12 11:06:05,008 - Velocimacro : added new VM : #pack_func_param_string_call_lua( m ) : source = protocols.lua.vm
+2017-07-12 11:06:05,042 - ResourceManager : found protocols.lua.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 11:06:05,418 - SimpleLog4NetLogSystem initialized using logfile 'GZCodeBuilder.log'
+2017-07-12 11:06:05,434 - ************************************************************** 
+2017-07-12 11:06:05,434 - Starting NVelocity v0.4.1
+2017-07-12 11:06:05,434 - RuntimeInstance initializing.
+2017-07-12 11:06:05,434 - Default Properties File: NVelocity.Runtime.Defaults.nvelocity.properties
+2017-07-12 11:06:05,434 - Trying to use logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 11:06:05,434 - Using logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 11:06:05,438 - Default ResourceManager initializing. (NVelocity.Runtime.Resource.ResourceManagerImpl)
+2017-07-12 11:06:05,442 - Resource Loader Instantiated: NVelocity.Runtime.Resource.Loader.FileResourceLoader
+2017-07-12 11:06:05,445 - FileResourceLoader : initialization starting.
+2017-07-12 11:06:05,445 - FileResourceLoader : adding path 'F:\arpg\contrib\protocol\\..\..\\src\robotd\handler'
+2017-07-12 11:06:05,445 - FileResourceLoader : initialization complete.
+2017-07-12 11:06:05,446 - ResourceCache : initialized. (NVelocity.Runtime.Resource.ResourceCacheImpl)
+2017-07-12 11:06:05,446 - Default ResourceManager initialization complete.
+2017-07-12 11:06:05,454 - Loaded System Directive: NVelocity.Runtime.Directive.Include,NVelocity
+2017-07-12 11:06:05,454 - Loaded System Directive: NVelocity.Runtime.Directive.Foreach,NVelocity
+2017-07-12 11:06:05,455 - Loaded System Directive: NVelocity.Runtime.Directive.Macro,NVelocity
+2017-07-12 11:06:05,455 - Loaded System Directive: NVelocity.Runtime.Directive.Literal,NVelocity
+2017-07-12 11:06:05,455 - Loaded System Directive: NVelocity.Runtime.Directive.Parse,NVelocity
+2017-07-12 11:06:05,464 - Created: 20 parsers.
+2017-07-12 11:06:05,467 - Velocimacro : initialization starting.
+2017-07-12 11:06:05,467 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-07-12 11:06:05,467 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-07-12 11:06:05,467 - Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+2017-07-12 11:06:05,468 - Velocimacro : messages on  : VM system will output logging messages
+2017-07-12 11:06:05,468 - Velocimacro : autoload off  : VM system will not automatically reload global library macros
+2017-07-12 11:06:05,468 - Velocimacro : initialization complete.
+2017-07-12 11:06:05,468 - NVelocity successfully started.
+2017-07-12 11:06:05,674 - Velocimacro : added new VM : #pack_func_param_string_call( m ) : source = ProtocolUtil.cpp.vm
+2017-07-12 11:06:05,675 - Velocimacro : added new VM : #pack_func_param_string( m ) : source = ProtocolUtil.cpp.vm
+2017-07-12 11:06:05,675 - Velocimacro : added new VM : #unpack_func_param_string( m ) : source = ProtocolUtil.cpp.vm
+2017-07-12 11:06:05,676 - Velocimacro : VM addition rejected : pack_func_param_string : inline not allowed to replace existing VM
+2017-07-12 11:06:05,676 - Velocimacro : added new VM : #read_value_string( i ) : source = ProtocolUtil.cpp.vm
+2017-07-12 11:06:05,709 - ResourceManager : found ProtocolUtil.cpp.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 11:06:05,815 - ResourceManager : found ProtocolUtil.h.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 11:06:06,066 - SimpleLog4NetLogSystem initialized using logfile 'GZCodeBuilder.log'
+2017-07-12 11:06:06,082 - ************************************************************** 
+2017-07-12 11:06:06,082 - Starting NVelocity v0.4.1
+2017-07-12 11:06:06,082 - RuntimeInstance initializing.
+2017-07-12 11:06:06,082 - Default Properties File: NVelocity.Runtime.Defaults.nvelocity.properties
+2017-07-12 11:06:06,082 - Trying to use logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 11:06:06,082 - Using logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 11:06:06,085 - Default ResourceManager initializing. (NVelocity.Runtime.Resource.ResourceManagerImpl)
+2017-07-12 11:06:06,089 - Resource Loader Instantiated: NVelocity.Runtime.Resource.Loader.FileResourceLoader
+2017-07-12 11:06:06,093 - FileResourceLoader : initialization starting.
+2017-07-12 11:06:06,093 - FileResourceLoader : adding path 'F:\arpg\contrib\protocol\\..\..\\contrib\ts'
+2017-07-12 11:06:06,093 - FileResourceLoader : initialization complete.
+2017-07-12 11:06:06,094 - ResourceCache : initialized. (NVelocity.Runtime.Resource.ResourceCacheImpl)
+2017-07-12 11:06:06,094 - Default ResourceManager initialization complete.
+2017-07-12 11:06:06,102 - Loaded System Directive: NVelocity.Runtime.Directive.Include,NVelocity
+2017-07-12 11:06:06,102 - Loaded System Directive: NVelocity.Runtime.Directive.Foreach,NVelocity
+2017-07-12 11:06:06,102 - Loaded System Directive: NVelocity.Runtime.Directive.Macro,NVelocity
+2017-07-12 11:06:06,102 - Loaded System Directive: NVelocity.Runtime.Directive.Literal,NVelocity
+2017-07-12 11:06:06,103 - Loaded System Directive: NVelocity.Runtime.Directive.Parse,NVelocity
+2017-07-12 11:06:06,111 - Created: 20 parsers.
+2017-07-12 11:06:06,114 - Velocimacro : initialization starting.
+2017-07-12 11:06:06,115 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-07-12 11:06:06,115 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-07-12 11:06:06,115 - Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+2017-07-12 11:06:06,115 - Velocimacro : messages on  : VM system will output logging messages
+2017-07-12 11:06:06,115 - Velocimacro : autoload off  : VM system will not automatically reload global library macros
+2017-07-12 11:06:06,115 - Velocimacro : initialization complete.
+2017-07-12 11:06:06,115 - NVelocity successfully started.
+2017-07-12 11:06:06,305 - Velocimacro : added new VM : #gettype( i ) : source = Protocols.ts.vm
+2017-07-12 11:06:06,320 - Velocimacro : added new VM : #chg( str ) : source = Protocols.ts.vm
+2017-07-12 11:06:06,322 - Velocimacro : added new VM : #pack_func_param_string( m ) : source = Protocols.ts.vm
+2017-07-12 11:06:06,325 - Velocimacro : added new VM : #outDebugParas( m ) : source = Protocols.ts.vm
+2017-07-12 11:06:06,360 - ResourceManager : found Protocols.ts.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 11:06:06,465 - Velocimacro : VM addition rejected : gettype : inline not allowed to replace existing VM
+2017-07-12 11:06:06,466 - ResourceManager : found client.strutsvm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 11:06:06,487 - Velocimacro : VM addition rejected : gettype : inline not allowed to replace existing VM
+2017-07-12 11:06:06,488 - ResourceManager : found client.msgtsvm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:19:41,702 - SimpleLog4NetLogSystem initialized using logfile 'GZCodeBuilder.log'
+2017-07-12 14:19:41,718 - ************************************************************** 
+2017-07-12 14:19:41,718 - Starting NVelocity v0.4.1
+2017-07-12 14:19:41,718 - RuntimeInstance initializing.
+2017-07-12 14:19:41,718 - Default Properties File: NVelocity.Runtime.Defaults.nvelocity.properties
+2017-07-12 14:19:41,718 - Trying to use logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:19:41,718 - Using logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:19:41,721 - Default ResourceManager initializing. (NVelocity.Runtime.Resource.ResourceManagerImpl)
+2017-07-12 14:19:41,726 - Resource Loader Instantiated: NVelocity.Runtime.Resource.Loader.FileResourceLoader
+2017-07-12 14:19:41,729 - FileResourceLoader : initialization starting.
+2017-07-12 14:19:41,729 - FileResourceLoader : adding path 'F:\arpg\contrib\protocol\\..\..\\src\svrcore\protocol'
+2017-07-12 14:19:41,729 - FileResourceLoader : initialization complete.
+2017-07-12 14:19:41,730 - ResourceCache : initialized. (NVelocity.Runtime.Resource.ResourceCacheImpl)
+2017-07-12 14:19:41,730 - Default ResourceManager initialization complete.
+2017-07-12 14:19:41,737 - Loaded System Directive: NVelocity.Runtime.Directive.Include,NVelocity
+2017-07-12 14:19:41,738 - Loaded System Directive: NVelocity.Runtime.Directive.Foreach,NVelocity
+2017-07-12 14:19:41,738 - Loaded System Directive: NVelocity.Runtime.Directive.Macro,NVelocity
+2017-07-12 14:19:41,738 - Loaded System Directive: NVelocity.Runtime.Directive.Literal,NVelocity
+2017-07-12 14:19:41,738 - Loaded System Directive: NVelocity.Runtime.Directive.Parse,NVelocity
+2017-07-12 14:19:41,747 - Created: 20 parsers.
+2017-07-12 14:19:41,751 - Velocimacro : initialization starting.
+2017-07-12 14:19:41,751 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-07-12 14:19:41,751 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-07-12 14:19:41,751 - Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+2017-07-12 14:19:41,751 - Velocimacro : messages on  : VM system will output logging messages
+2017-07-12 14:19:41,751 - Velocimacro : autoload off  : VM system will not automatically reload global library macros
+2017-07-12 14:19:41,751 - Velocimacro : initialization complete.
+2017-07-12 14:19:41,751 - NVelocity successfully started.
+2017-07-12 14:19:41,946 - Velocimacro : added new VM : #pack_func_param_string( m ) : source = external.c.vm
+2017-07-12 14:19:41,946 - Velocimacro : added new VM : #unpack_func_param_string( m ) : source = external.c.vm
+2017-07-12 14:19:41,978 - ResourceManager : found external.c.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:19:42,092 - Velocimacro : added new VM : #pack_func_param_string_call( m ) : source = external.h.vm
+2017-07-12 14:19:42,095 - ResourceManager : found external.h.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:19:42,378 - SimpleLog4NetLogSystem initialized using logfile 'GZCodeBuilder.log'
+2017-07-12 14:19:42,394 - ************************************************************** 
+2017-07-12 14:19:42,394 - Starting NVelocity v0.4.1
+2017-07-12 14:19:42,394 - RuntimeInstance initializing.
+2017-07-12 14:19:42,394 - Default Properties File: NVelocity.Runtime.Defaults.nvelocity.properties
+2017-07-12 14:19:42,394 - Trying to use logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:19:42,394 - Using logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:19:42,397 - Default ResourceManager initializing. (NVelocity.Runtime.Resource.ResourceManagerImpl)
+2017-07-12 14:19:42,402 - Resource Loader Instantiated: NVelocity.Runtime.Resource.Loader.FileResourceLoader
+2017-07-12 14:19:42,405 - FileResourceLoader : initialization starting.
+2017-07-12 14:19:42,405 - FileResourceLoader : adding path 'F:\arpg\contrib\protocol\\..\..\\contrib\scripts\share'
+2017-07-12 14:19:42,405 - FileResourceLoader : initialization complete.
+2017-07-12 14:19:42,406 - ResourceCache : initialized. (NVelocity.Runtime.Resource.ResourceCacheImpl)
+2017-07-12 14:19:42,406 - Default ResourceManager initialization complete.
+2017-07-12 14:19:42,414 - Loaded System Directive: NVelocity.Runtime.Directive.Include,NVelocity
+2017-07-12 14:19:42,414 - Loaded System Directive: NVelocity.Runtime.Directive.Foreach,NVelocity
+2017-07-12 14:19:42,414 - Loaded System Directive: NVelocity.Runtime.Directive.Macro,NVelocity
+2017-07-12 14:19:42,414 - Loaded System Directive: NVelocity.Runtime.Directive.Literal,NVelocity
+2017-07-12 14:19:42,415 - Loaded System Directive: NVelocity.Runtime.Directive.Parse,NVelocity
+2017-07-12 14:19:42,423 - Created: 20 parsers.
+2017-07-12 14:19:42,427 - Velocimacro : initialization starting.
+2017-07-12 14:19:42,427 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-07-12 14:19:42,427 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-07-12 14:19:42,427 - Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+2017-07-12 14:19:42,427 - Velocimacro : messages on  : VM system will output logging messages
+2017-07-12 14:19:42,427 - Velocimacro : autoload off  : VM system will not automatically reload global library macros
+2017-07-12 14:19:42,427 - Velocimacro : initialization complete.
+2017-07-12 14:19:42,427 - NVelocity successfully started.
+2017-07-12 14:19:42,617 - Velocimacro : added new VM : #pack_func_param_string_call_lua( m ) : source = protocols.lua.vm
+2017-07-12 14:19:42,652 - ResourceManager : found protocols.lua.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:19:43,164 - SimpleLog4NetLogSystem initialized using logfile 'GZCodeBuilder.log'
+2017-07-12 14:19:43,185 - ************************************************************** 
+2017-07-12 14:19:43,185 - Starting NVelocity v0.4.1
+2017-07-12 14:19:43,185 - RuntimeInstance initializing.
+2017-07-12 14:19:43,185 - Default Properties File: NVelocity.Runtime.Defaults.nvelocity.properties
+2017-07-12 14:19:43,185 - Trying to use logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:19:43,185 - Using logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:19:43,189 - Default ResourceManager initializing. (NVelocity.Runtime.Resource.ResourceManagerImpl)
+2017-07-12 14:19:43,193 - Resource Loader Instantiated: NVelocity.Runtime.Resource.Loader.FileResourceLoader
+2017-07-12 14:19:43,197 - FileResourceLoader : initialization starting.
+2017-07-12 14:19:43,197 - FileResourceLoader : adding path 'F:\arpg\contrib\protocol\\..\..\\src\robotd\handler'
+2017-07-12 14:19:43,197 - FileResourceLoader : initialization complete.
+2017-07-12 14:19:43,198 - ResourceCache : initialized. (NVelocity.Runtime.Resource.ResourceCacheImpl)
+2017-07-12 14:19:43,198 - Default ResourceManager initialization complete.
+2017-07-12 14:19:43,208 - Loaded System Directive: NVelocity.Runtime.Directive.Include,NVelocity
+2017-07-12 14:19:43,208 - Loaded System Directive: NVelocity.Runtime.Directive.Foreach,NVelocity
+2017-07-12 14:19:43,208 - Loaded System Directive: NVelocity.Runtime.Directive.Macro,NVelocity
+2017-07-12 14:19:43,209 - Loaded System Directive: NVelocity.Runtime.Directive.Literal,NVelocity
+2017-07-12 14:19:43,209 - Loaded System Directive: NVelocity.Runtime.Directive.Parse,NVelocity
+2017-07-12 14:19:43,220 - Created: 20 parsers.
+2017-07-12 14:19:43,224 - Velocimacro : initialization starting.
+2017-07-12 14:19:43,224 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-07-12 14:19:43,224 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-07-12 14:19:43,224 - Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+2017-07-12 14:19:43,225 - Velocimacro : messages on  : VM system will output logging messages
+2017-07-12 14:19:43,225 - Velocimacro : autoload off  : VM system will not automatically reload global library macros
+2017-07-12 14:19:43,225 - Velocimacro : initialization complete.
+2017-07-12 14:19:43,225 - NVelocity successfully started.
+2017-07-12 14:19:43,425 - Velocimacro : added new VM : #pack_func_param_string_call( m ) : source = ProtocolUtil.cpp.vm
+2017-07-12 14:19:43,426 - Velocimacro : added new VM : #pack_func_param_string( m ) : source = ProtocolUtil.cpp.vm
+2017-07-12 14:19:43,426 - Velocimacro : added new VM : #unpack_func_param_string( m ) : source = ProtocolUtil.cpp.vm
+2017-07-12 14:19:43,427 - Velocimacro : VM addition rejected : pack_func_param_string : inline not allowed to replace existing VM
+2017-07-12 14:19:43,427 - Velocimacro : added new VM : #read_value_string( i ) : source = ProtocolUtil.cpp.vm
+2017-07-12 14:19:43,459 - ResourceManager : found ProtocolUtil.cpp.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:19:43,567 - ResourceManager : found ProtocolUtil.h.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:19:43,832 - SimpleLog4NetLogSystem initialized using logfile 'GZCodeBuilder.log'
+2017-07-12 14:19:43,848 - ************************************************************** 
+2017-07-12 14:19:43,848 - Starting NVelocity v0.4.1
+2017-07-12 14:19:43,848 - RuntimeInstance initializing.
+2017-07-12 14:19:43,848 - Default Properties File: NVelocity.Runtime.Defaults.nvelocity.properties
+2017-07-12 14:19:43,848 - Trying to use logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:19:43,848 - Using logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:19:43,851 - Default ResourceManager initializing. (NVelocity.Runtime.Resource.ResourceManagerImpl)
+2017-07-12 14:19:43,855 - Resource Loader Instantiated: NVelocity.Runtime.Resource.Loader.FileResourceLoader
+2017-07-12 14:19:43,859 - FileResourceLoader : initialization starting.
+2017-07-12 14:19:43,859 - FileResourceLoader : adding path 'F:\arpg\contrib\protocol\\..\..\\contrib\ts'
+2017-07-12 14:19:43,859 - FileResourceLoader : initialization complete.
+2017-07-12 14:19:43,860 - ResourceCache : initialized. (NVelocity.Runtime.Resource.ResourceCacheImpl)
+2017-07-12 14:19:43,860 - Default ResourceManager initialization complete.
+2017-07-12 14:19:43,868 - Loaded System Directive: NVelocity.Runtime.Directive.Include,NVelocity
+2017-07-12 14:19:43,868 - Loaded System Directive: NVelocity.Runtime.Directive.Foreach,NVelocity
+2017-07-12 14:19:43,868 - Loaded System Directive: NVelocity.Runtime.Directive.Macro,NVelocity
+2017-07-12 14:19:43,869 - Loaded System Directive: NVelocity.Runtime.Directive.Literal,NVelocity
+2017-07-12 14:19:43,869 - Loaded System Directive: NVelocity.Runtime.Directive.Parse,NVelocity
+2017-07-12 14:19:43,879 - Created: 20 parsers.
+2017-07-12 14:19:43,884 - Velocimacro : initialization starting.
+2017-07-12 14:19:43,884 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-07-12 14:19:43,884 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-07-12 14:19:43,884 - Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+2017-07-12 14:19:43,884 - Velocimacro : messages on  : VM system will output logging messages
+2017-07-12 14:19:43,884 - Velocimacro : autoload off  : VM system will not automatically reload global library macros
+2017-07-12 14:19:43,884 - Velocimacro : initialization complete.
+2017-07-12 14:19:43,884 - NVelocity successfully started.
+2017-07-12 14:19:44,052 - Velocimacro : added new VM : #gettype( i ) : source = Protocols.ts.vm
+2017-07-12 14:19:44,068 - Velocimacro : added new VM : #chg( str ) : source = Protocols.ts.vm
+2017-07-12 14:19:44,069 - Velocimacro : added new VM : #pack_func_param_string( m ) : source = Protocols.ts.vm
+2017-07-12 14:19:44,072 - Velocimacro : added new VM : #outDebugParas( m ) : source = Protocols.ts.vm
+2017-07-12 14:19:44,107 - ResourceManager : found Protocols.ts.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:19:44,212 - Velocimacro : VM addition rejected : gettype : inline not allowed to replace existing VM
+2017-07-12 14:19:44,213 - ResourceManager : found client.strutsvm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:19:44,226 - Velocimacro : VM addition rejected : gettype : inline not allowed to replace existing VM
+2017-07-12 14:19:44,227 - ResourceManager : found client.msgtsvm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:27:30,886 - SimpleLog4NetLogSystem initialized using logfile 'GZCodeBuilder.log'
+2017-07-12 14:27:30,902 - ************************************************************** 
+2017-07-12 14:27:30,902 - Starting NVelocity v0.4.1
+2017-07-12 14:27:30,902 - RuntimeInstance initializing.
+2017-07-12 14:27:30,902 - Default Properties File: NVelocity.Runtime.Defaults.nvelocity.properties
+2017-07-12 14:27:30,902 - Trying to use logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:27:30,902 - Using logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:27:30,906 - Default ResourceManager initializing. (NVelocity.Runtime.Resource.ResourceManagerImpl)
+2017-07-12 14:27:30,910 - Resource Loader Instantiated: NVelocity.Runtime.Resource.Loader.FileResourceLoader
+2017-07-12 14:27:30,914 - FileResourceLoader : initialization starting.
+2017-07-12 14:27:30,914 - FileResourceLoader : adding path 'F:\arpg\contrib\protocol\\..\..\\src\svrcore\protocol'
+2017-07-12 14:27:30,914 - FileResourceLoader : initialization complete.
+2017-07-12 14:27:30,914 - ResourceCache : initialized. (NVelocity.Runtime.Resource.ResourceCacheImpl)
+2017-07-12 14:27:30,914 - Default ResourceManager initialization complete.
+2017-07-12 14:27:30,922 - Loaded System Directive: NVelocity.Runtime.Directive.Include,NVelocity
+2017-07-12 14:27:30,922 - Loaded System Directive: NVelocity.Runtime.Directive.Foreach,NVelocity
+2017-07-12 14:27:30,923 - Loaded System Directive: NVelocity.Runtime.Directive.Macro,NVelocity
+2017-07-12 14:27:30,923 - Loaded System Directive: NVelocity.Runtime.Directive.Literal,NVelocity
+2017-07-12 14:27:30,923 - Loaded System Directive: NVelocity.Runtime.Directive.Parse,NVelocity
+2017-07-12 14:27:30,932 - Created: 20 parsers.
+2017-07-12 14:27:30,935 - Velocimacro : initialization starting.
+2017-07-12 14:27:30,935 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-07-12 14:27:30,935 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-07-12 14:27:30,935 - Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+2017-07-12 14:27:30,936 - Velocimacro : messages on  : VM system will output logging messages
+2017-07-12 14:27:30,936 - Velocimacro : autoload off  : VM system will not automatically reload global library macros
+2017-07-12 14:27:30,936 - Velocimacro : initialization complete.
+2017-07-12 14:27:30,936 - NVelocity successfully started.
+2017-07-12 14:27:31,131 - Velocimacro : added new VM : #pack_func_param_string( m ) : source = external.c.vm
+2017-07-12 14:27:31,131 - Velocimacro : added new VM : #unpack_func_param_string( m ) : source = external.c.vm
+2017-07-12 14:27:31,163 - ResourceManager : found external.c.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:27:31,277 - Velocimacro : added new VM : #pack_func_param_string_call( m ) : source = external.h.vm
+2017-07-12 14:27:31,281 - ResourceManager : found external.h.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:27:31,562 - SimpleLog4NetLogSystem initialized using logfile 'GZCodeBuilder.log'
+2017-07-12 14:27:31,578 - ************************************************************** 
+2017-07-12 14:27:31,578 - Starting NVelocity v0.4.1
+2017-07-12 14:27:31,578 - RuntimeInstance initializing.
+2017-07-12 14:27:31,578 - Default Properties File: NVelocity.Runtime.Defaults.nvelocity.properties
+2017-07-12 14:27:31,578 - Trying to use logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:27:31,578 - Using logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:27:31,582 - Default ResourceManager initializing. (NVelocity.Runtime.Resource.ResourceManagerImpl)
+2017-07-12 14:27:31,586 - Resource Loader Instantiated: NVelocity.Runtime.Resource.Loader.FileResourceLoader
+2017-07-12 14:27:31,589 - FileResourceLoader : initialization starting.
+2017-07-12 14:27:31,589 - FileResourceLoader : adding path 'F:\arpg\contrib\protocol\\..\..\\contrib\scripts\share'
+2017-07-12 14:27:31,590 - FileResourceLoader : initialization complete.
+2017-07-12 14:27:31,590 - ResourceCache : initialized. (NVelocity.Runtime.Resource.ResourceCacheImpl)
+2017-07-12 14:27:31,590 - Default ResourceManager initialization complete.
+2017-07-12 14:27:31,598 - Loaded System Directive: NVelocity.Runtime.Directive.Include,NVelocity
+2017-07-12 14:27:31,598 - Loaded System Directive: NVelocity.Runtime.Directive.Foreach,NVelocity
+2017-07-12 14:27:31,599 - Loaded System Directive: NVelocity.Runtime.Directive.Macro,NVelocity
+2017-07-12 14:27:31,599 - Loaded System Directive: NVelocity.Runtime.Directive.Literal,NVelocity
+2017-07-12 14:27:31,599 - Loaded System Directive: NVelocity.Runtime.Directive.Parse,NVelocity
+2017-07-12 14:27:31,608 - Created: 20 parsers.
+2017-07-12 14:27:31,611 - Velocimacro : initialization starting.
+2017-07-12 14:27:31,612 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-07-12 14:27:31,612 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-07-12 14:27:31,612 - Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+2017-07-12 14:27:31,612 - Velocimacro : messages on  : VM system will output logging messages
+2017-07-12 14:27:31,612 - Velocimacro : autoload off  : VM system will not automatically reload global library macros
+2017-07-12 14:27:31,612 - Velocimacro : initialization complete.
+2017-07-12 14:27:31,612 - NVelocity successfully started.
+2017-07-12 14:27:31,801 - Velocimacro : added new VM : #pack_func_param_string_call_lua( m ) : source = protocols.lua.vm
+2017-07-12 14:27:31,835 - ResourceManager : found protocols.lua.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:27:32,191 - SimpleLog4NetLogSystem initialized using logfile 'GZCodeBuilder.log'
+2017-07-12 14:27:32,207 - ************************************************************** 
+2017-07-12 14:27:32,207 - Starting NVelocity v0.4.1
+2017-07-12 14:27:32,207 - RuntimeInstance initializing.
+2017-07-12 14:27:32,207 - Default Properties File: NVelocity.Runtime.Defaults.nvelocity.properties
+2017-07-12 14:27:32,207 - Trying to use logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:27:32,207 - Using logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:27:32,210 - Default ResourceManager initializing. (NVelocity.Runtime.Resource.ResourceManagerImpl)
+2017-07-12 14:27:32,215 - Resource Loader Instantiated: NVelocity.Runtime.Resource.Loader.FileResourceLoader
+2017-07-12 14:27:32,218 - FileResourceLoader : initialization starting.
+2017-07-12 14:27:32,218 - FileResourceLoader : adding path 'F:\arpg\contrib\protocol\\..\..\\src\robotd\handler'
+2017-07-12 14:27:32,218 - FileResourceLoader : initialization complete.
+2017-07-12 14:27:32,219 - ResourceCache : initialized. (NVelocity.Runtime.Resource.ResourceCacheImpl)
+2017-07-12 14:27:32,219 - Default ResourceManager initialization complete.
+2017-07-12 14:27:32,227 - Loaded System Directive: NVelocity.Runtime.Directive.Include,NVelocity
+2017-07-12 14:27:32,227 - Loaded System Directive: NVelocity.Runtime.Directive.Foreach,NVelocity
+2017-07-12 14:27:32,227 - Loaded System Directive: NVelocity.Runtime.Directive.Macro,NVelocity
+2017-07-12 14:27:32,227 - Loaded System Directive: NVelocity.Runtime.Directive.Literal,NVelocity
+2017-07-12 14:27:32,228 - Loaded System Directive: NVelocity.Runtime.Directive.Parse,NVelocity
+2017-07-12 14:27:32,236 - Created: 20 parsers.
+2017-07-12 14:27:32,240 - Velocimacro : initialization starting.
+2017-07-12 14:27:32,240 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-07-12 14:27:32,240 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-07-12 14:27:32,240 - Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+2017-07-12 14:27:32,240 - Velocimacro : messages on  : VM system will output logging messages
+2017-07-12 14:27:32,240 - Velocimacro : autoload off  : VM system will not automatically reload global library macros
+2017-07-12 14:27:32,240 - Velocimacro : initialization complete.
+2017-07-12 14:27:32,240 - NVelocity successfully started.
+2017-07-12 14:27:32,437 - Velocimacro : added new VM : #pack_func_param_string_call( m ) : source = ProtocolUtil.cpp.vm
+2017-07-12 14:27:32,438 - Velocimacro : added new VM : #pack_func_param_string( m ) : source = ProtocolUtil.cpp.vm
+2017-07-12 14:27:32,438 - Velocimacro : added new VM : #unpack_func_param_string( m ) : source = ProtocolUtil.cpp.vm
+2017-07-12 14:27:32,439 - Velocimacro : VM addition rejected : pack_func_param_string : inline not allowed to replace existing VM
+2017-07-12 14:27:32,440 - Velocimacro : added new VM : #read_value_string( i ) : source = ProtocolUtil.cpp.vm
+2017-07-12 14:27:32,472 - ResourceManager : found ProtocolUtil.cpp.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:27:32,578 - ResourceManager : found ProtocolUtil.h.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:27:32,826 - SimpleLog4NetLogSystem initialized using logfile 'GZCodeBuilder.log'
+2017-07-12 14:27:32,842 - ************************************************************** 
+2017-07-12 14:27:32,842 - Starting NVelocity v0.4.1
+2017-07-12 14:27:32,842 - RuntimeInstance initializing.
+2017-07-12 14:27:32,842 - Default Properties File: NVelocity.Runtime.Defaults.nvelocity.properties
+2017-07-12 14:27:32,842 - Trying to use logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:27:32,842 - Using logger class NVelocity.Runtime.Log.SimpleLog4NetLogSystem,NVelocity
+2017-07-12 14:27:32,845 - Default ResourceManager initializing. (NVelocity.Runtime.Resource.ResourceManagerImpl)
+2017-07-12 14:27:32,850 - Resource Loader Instantiated: NVelocity.Runtime.Resource.Loader.FileResourceLoader
+2017-07-12 14:27:32,853 - FileResourceLoader : initialization starting.
+2017-07-12 14:27:32,853 - FileResourceLoader : adding path 'F:\arpg\contrib\protocol\\..\..\\contrib\ts'
+2017-07-12 14:27:32,853 - FileResourceLoader : initialization complete.
+2017-07-12 14:27:32,854 - ResourceCache : initialized. (NVelocity.Runtime.Resource.ResourceCacheImpl)
+2017-07-12 14:27:32,854 - Default ResourceManager initialization complete.
+2017-07-12 14:27:32,862 - Loaded System Directive: NVelocity.Runtime.Directive.Include,NVelocity
+2017-07-12 14:27:32,862 - Loaded System Directive: NVelocity.Runtime.Directive.Foreach,NVelocity
+2017-07-12 14:27:32,862 - Loaded System Directive: NVelocity.Runtime.Directive.Macro,NVelocity
+2017-07-12 14:27:32,862 - Loaded System Directive: NVelocity.Runtime.Directive.Literal,NVelocity
+2017-07-12 14:27:32,862 - Loaded System Directive: NVelocity.Runtime.Directive.Parse,NVelocity
+2017-07-12 14:27:32,871 - Created: 20 parsers.
+2017-07-12 14:27:32,875 - Velocimacro : initialization starting.
+2017-07-12 14:27:32,875 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-07-12 14:27:32,875 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-07-12 14:27:32,875 - Velocimacro : allowInlineLocal = false : VMs defined inline will be  global in scope if allowed.
+2017-07-12 14:27:32,875 - Velocimacro : messages on  : VM system will output logging messages
+2017-07-12 14:27:32,875 - Velocimacro : autoload off  : VM system will not automatically reload global library macros
+2017-07-12 14:27:32,875 - Velocimacro : initialization complete.
+2017-07-12 14:27:32,875 - NVelocity successfully started.
+2017-07-12 14:27:33,046 - Velocimacro : added new VM : #gettype( i ) : source = Protocols.ts.vm
+2017-07-12 14:27:33,061 - Velocimacro : added new VM : #chg( str ) : source = Protocols.ts.vm
+2017-07-12 14:27:33,063 - Velocimacro : added new VM : #pack_func_param_string( m ) : source = Protocols.ts.vm
+2017-07-12 14:27:33,065 - Velocimacro : added new VM : #outDebugParas( m ) : source = Protocols.ts.vm
+2017-07-12 14:27:33,100 - ResourceManager : found Protocols.ts.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:27:33,206 - Velocimacro : VM addition rejected : gettype : inline not allowed to replace existing VM
+2017-07-12 14:27:33,207 - ResourceManager : found client.strutsvm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2017-07-12 14:27:33,220 - Velocimacro : VM addition rejected : gettype : inline not allowed to replace existing VM
+2017-07-12 14:27:33,221 - ResourceManager : found client.msgtsvm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity

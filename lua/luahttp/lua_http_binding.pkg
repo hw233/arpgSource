@@ -1,0 +1,73 @@
+$#include "lua_http_binding_manual.h"
+
+namespace http{
+namespace client{
+
+class client
+{
+	 client();
+    ~client();
+	
+	int post(string url, string data, string& reponse);
+    bool async_post(string url, string data,int cb);
+	
+	void poll();
+};
+
+}
+
+namespace server{
+
+struct request
+{
+	string method;
+	string uri;
+	string query_string;
+	string content;	
+	string remote_ip;
+};
+  
+struct reply
+{	
+	enum status_type
+	{
+		ok = 200,
+		created = 201,
+		accepted = 202,
+		no_content = 204,
+		multiple_choices = 300,
+		moved_permanently = 301,
+		moved_temporarily = 302,
+		not_modified = 304,
+		bad_request = 400,
+		unauthorized = 401,
+		forbidden = 403,
+		not_found = 404,
+		internal_server_error = 500,
+		not_implemented = 501,
+		bad_gateway = 502,
+		service_unavailable = 503
+	};
+	status_type status;
+	string content;
+};
+
+class request_handler
+{
+	 void add_hanlde(string uri, int callback);
+};
+
+class server
+{
+	server(string address, string port, string doc_root);
+	~server();
+	
+	void poll();
+	request_handler& get_request_handler();
+	unsigned short get_port();
+};
+
+}
+
+}
+

@@ -1,0 +1,42 @@
+#网关服务IP
+netgd_host = 127.0.0.1
+#网关服务端口
+netgd_port = 10086
+
+#中心服IP
+centd_host = 127.0.0.1
+#中心服端口
+centd_port = 10087
+
+#角色数据库日志
+db_chars_log = "../../../log/db_chars_policed.log"
+#日志数据库日志
+logdb_log = "../../../log/logdb_log_policed.log"
+
+#素材文件夹路径
+data_folder = "../../../contrib/template/"
+
+#脚本文件夹
+script_folder = "../../../contrib/scripts/"
+
+#日志文件名称
+log_name = policed
+log_folder = log/
+
+#日志等级
+log_level = 0
+
+#日志目录
+log_folder = game_log/
+
+#封禁IP的最大次数
+lock_ip_max = 10
+
+#游戏ID
+game_id = 59
+
+#是否POST
+do_post = N
+
+#推送玩家在线信息
+online_port_url = ""

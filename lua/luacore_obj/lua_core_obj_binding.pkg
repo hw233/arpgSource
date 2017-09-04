@@ -1,0 +1,255 @@
+
+$#include <assert.h>
+$#define BYTEARRAY_ASSERT assert
+$#include "UpdateMask.h"
+$#include "ByteArrayCompress.h"
+$#include "SyncEventRecorder.h"
+$#include "GuidObject.h"
+$#include "GuidObjectTable.h"
+$#include "BinLogStru.h"
+$#include "RemoteOperatorAdapter.h"
+$#include "lua_core_obj_binding_manual.h"
+
+namespace core_obj {
+
+typedef std::string string;
+
+enum SyncMode{
+	SYNC_NONE = 0,		
+	SYNC_MASTER = 0x01,	
+	SYNC_SLAVE = 0x02,	
+	SYNC_MIRROR = 0x04
+};
+
+enum OptType{
+	OPT_SET 	 = 0x01,
+	OPT_UNSET 	 = 0x02,
+	OPT_ADD 	 = 0x04,
+	OPT_SUB 	 = 0x08,
+
+	__OPT_NEW 	 = 0x10,	
+	__OPT_DELETE  = 0x20,	
+	__OPT_UPDATE  = 0x40
+};
+
+enum Type{
+	TYPE_UINT32  = 0,
+	TYPE_UINT16  = 1,
+	TYPE_UINT8  = 2,
+	TYPE_BIT  = 3,
+	TYPE_UINT64  = 4,
+	TYPE_INT32  = 5,
+	TYPE_STRING  = 6,
+	TYPE_INT16  = 7,
+//	TYPE_INT8  = 8,
+	TYPE_FLOAT = 9
+};
+
+enum AtomicOpt{
+	ATOMIC_OPT_RESULT_NO 	 = 0,	
+	ATOMIC_OPT_RESULT_TRY 	 = 1,	
+	ATOMIC_OPT_RESULT_OK 	 = 2,	
+	ATOMIC_OPT_RESULT_FAILED = -1
+};
+
+typedef unsigned int uint32_t;
+typedef int int32_t;
+typedef unsigned short uint16_t;
+typedef short int16_t;
+typedef unsigned char uint8_t;
+typedef char int8_t;
+
+class UpdateMask {
+	UpdateMask(){};
+	virtual ~UpdateMask(){};
+	inline bool GetBit(int i) const;
+	inline void SetBit(int i);
+	inline void UnSetBit(int i);
+	bool WriteTo(ByteArray&) const;
+	bool ReadFrom(ByteArray&);
+};
+
+class ByteArray {
+	ByteArray(){};
+	virtual ~ByteArray(){};
+
+	void clear();
+	void *data(int offset);
+
+	tolua_property__overload int length;
+	tolua_property__overload int position;
+	
+	int bytesAvailable()const;
+
+	int8_t readByte();
+	double readDouble();
+	float readFloat();
+	int32_t readInt();
+	int16_t readShort();
+	int16_t readShort(int pos);
+	uint8_t readUnsignedByte();
+	uint32_t readUnsignedInt();
+	uint16_t readUnsignedShort();
+	int16_t readUnsignedShort(int pos);
+	string readUTF();
+	string readUTFCheckLen(int8_t &is_enough_long);
+	string readStringByLen(int len);
+	
+	void writeDouble(double val);
+	void writeFloat(float val);
+	void writeInt(int32_t val);
+	void writeShort(short val);
+	void writeByte(int8_t val);
+	void writeUnsignedInt(uint32_t val);
+	void writeUTF(string str);	
+	void writeStringByLen(string s,int len);
+	ByteArray& writeBytes(const ByteArray& bytes_,int offset = 0,int len = 0);
+};
+
+class SyncEventRecorder {
+	enum ObjectOption
+	{
+		OBJ_OPT_NEW = 0x10,		
+		OBJ_OPT_DELETE = 0x20,	
+		OBJ_OPT_UPDATE = 0x40,	
+		OBJ_OPT_BINLOG = 0x80
+	};
+
+	SyncEventRecorder(SyncMode m_,const string& key = "");
+	virtual ~SyncEventRecorder();
+	
+	tolua_property__overload string guid;	
+	virtual void WriteCreateBlock(ByteArray &);
+	void WriteReleaseBlock(ByteArray &);
+	bool WriteUpdateBlock(ByteArray &);
+
+	virtual bool ReadFrom(int flags,ByteArray& bytes);
+	
+	void ToString(string& ints,string& strs);	
+	void FromString(string ints,string strs);	
+	void SetBinlogMaxSize(int size);
+	void setMode(uint32_t v);
+	void Clear();
+	void Reset();
+
+	int uint32_values_size();
+	int str_values_size();
+};
+
+class GuidObject : public SyncEventRecorder{
+	GuidObject(SyncMode m_,const string& key = "");
+	virtual ~GuidObject();
+	
+	inline uint32_t GetUInt32(int index) const;
+	void	AddUInt32(int index,uint32_t value);
+	void	SubUInt32(int index,uint32_t value);
+	void	SetUInt32(int index,uint32_t value);
+	
+	inline int32_t	GetInt32(int index) const;
+	void	AddInt32(int index,int32_t value);
+	void	SubInt32(int index,int32_t value);
+	void	SetInt32(int index,int32_t value);
+	
+	inline	float	GetFloat(int index) const;
+	void	AddFloat(int index, float value);
+	void	SubFloat(int index, float value);
+	void	SetFloat(int index, float value);
+
+	inline	double	GetDouble(int index);
+	void	SetDouble(int index, double value);
+	void	AddDouble(int index, double value);
+	void	SubDouble(int index, double value);
+	
+	inline uint16_t GetUInt16(int index,uint8_t offset) const;
+	void	AddUInt16(int index,uint8_t offset,uint16_t value);
+	void	SubUInt16(int index,uint8_t offset,uint16_t value);
+	void	SetUInt16(int index,uint8_t offset,uint16_t value);
+	
+	inline int16_t	GetInt16(int index,uint8_t offset) const;
+	void	AddInt16(int index,uint8_t offset,int16_t value);
+	void	SubInt16(int index,uint8_t offset,int16_t value);
+	void	SetInt16(int index,uint8_t offset,int16_t value);
+	
+	inline uint8_t	GetByte(int index,uint8_t offset) const;
+	void	AddByte(int index,uint8_t offset,uint8_t value);
+	void	SubByte(int index,uint8_t offset,uint8_t value);
+	void	SetByte(int index,uint8_t offset,uint8_t value);
+	
+	bool	GetBit(int index,uint16_t offset) const;
+	void	SetBit(int index,uint16_t offset);
+	void	UnSetBit(int index,uint16_t offset);
+	
+	const string&	GetStr(int index) const;		
+	void	SetStr(int index,const string& str);
+	uint32_t GetHashCode();	
+};
+
+class LuaGuidObject : public GuidObject{
+	LuaGuidObject(SyncMode m = SYNC_SLAVE,const string& key = "");
+	virtual ~LuaGuidObject();
+	
+	uint32_t after_update(int f);
+	uint32_t AddListen(int index,int scb);
+	uint32_t AddListenString(int index,int scb);
+	void DelListen(int index);
+	void DelScriptHanlder(int hanlder);
+}
+
+class GuidObjectTable {
+	GuidObjectTable(SyncMode m);
+	virtual ~GuidObjectTable();	
+	
+	GuidObject* Get(const string key);	
+	
+	bool CreateIndex(string exp);
+	void ReleaseIndex(string exp);
+
+	bool ApplyBlock(ByteArray *bytes);
+	
+	void LuaRegisterCreateEvent(string guid,uint32_t cb_idx);
+	void LuaRegisterReleaseEvent(string guid,uint32_t cb_idx);		
+};
+
+class LuaGuidObjectTable : public GuidObjectTable {
+	LuaGuidObjectTable();
+	virtual ~LuaGuidObjectTable();
+
+	void LuaRegisterCreateObject(uint32_t cb_idx);
+	void LuaRegisterReleaseObject(uint32_t cb_idx);	
+
+	void ForeachIndexer(string exp,uint32_t f);	
+}
+
+struct ByteArrayCompress {
+	static ByteArrayCompress inst;
+	ByteArrayCompress();
+	~ByteArrayCompress();
+
+	bool Compress(ByteArray& bytes);
+	bool UnCompress(ByteArray& bytes);
+};
+
+class RemoteOperatorAdapter {
+	RemoteOperatorAdapter(GuidObjectTable *t,int send_func,int opt_ctl,int opt_up,int opt_ctl_ret);
+	virtual ~RemoteOperatorAdapter();
+	void InitNoticeInfo(GuidObject *obj);
+	void CallPutObject(GuidObject *obj,int cb,bool add_notice);
+	void CallRemoveObject(string key,int cb);
+	void CallAddWatch(string key,int cb_func,bool createblock,uint32_t fd);
+	void CallDelWatch(string key,int cb_func,uint32_t fd);	 
+	void CallWatchObjects(string query_str,int cb_func);
+	void CallDelWatchObjs(string wol);
+	void CallCreateIndex(string exp);
+	void CallReleaseIndex(string exp);
+
+	void CallSetTag(string guid,string tag);	
+	void CallUnSetTAg(string guid,string tag);
+
+	//void CallSetTags(table guids,const string& tag);
+	//void CallUnSetTags(const string& guid,const string& tag);	
+
+	void Update();
+	void HandlePacket(uint32_t cid,int opt,ByteArray* buff);
+};
+
+} /* namespace core_obj */

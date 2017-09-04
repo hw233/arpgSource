@@ -1,0 +1,36 @@
+#ifndef _PROTOCOL_UTIL_H_
+#define _PROTOCOL_UTIL_H_
+
+\#include "robotd_app.h"
+\#include "encipher.h"
+
+class ProtocolUtil
+{
+public:
+	ProtocolUtil():m_conn(0),m_war_conn(0){}
+	~ProtocolUtil(){}
+public:
+	static void SetWarOptCode(vector<int> &);
+private:
+	core_socket::TcpConnection *m_conn;
+	core_socket::c2sencipher m_encipher;
+
+	core_socket::TcpConnection *m_war_conn;
+	core_socket::c2sencipher m_war_encipher;
+	static UpdateMask m_war_optcode;
+
+	ByteArray m_bytes;
+public:
+	void SendToServer(ByteArray &);
+	void ResetConn(core_socket::TcpConnection *conn);
+	void ResetWarConn(core_socket::TcpConnection *conn);
+#foreach( $m in $msgs )
+#if($m.Name.Substring(0,2)!="__"&&$m.Name!="update_object")
+	$m.desc
+	int unpack_$m.Name (ByteArray &bytes #unpack_func_param_string($m));
+	int send_$m.Name (#pack_func_param_string_call($m));
+#end	
+#end
+};
+
+#endif

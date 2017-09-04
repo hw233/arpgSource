@@ -1,0 +1,90 @@
+\#include "svrcore.h"
+\#include "storage_loader.h"
+\#include <fstream>
+\#include "progress_bar.h"
+\#include <iostream>
+\#include "lua_helper.h"
+
+#foreach($m in $server_tables)
+MemoryDB< $m.Name >  $m.Name#**#_db;
+#end
+
+#foreach($m in $server_tables)
+
+bool Load_$m.Name (lua_State *L)
+{
+	std::cout<<"Load $m.Name ING"<<std::endl;	
+	$m.Name#**#_db . clear();
+	
+	LuaStackAutoPopup autoPopup(L);
+#if ($m.Name == "quest_template" || $m.Name == "quest_wo_relation" || $m.Name == "quest_loot_item")
+	lua_getglobal(L, "$m.Name#**#_table");
+#else
+	lua_getglobal(L, "tb_$m.Name");
+#end	
+	ASSERT(lua_istable(L, -1));
+	int it_idx = lua_gettop(L);
+	lua_pushnil(L);
+	while(lua_next(L,it_idx))
+	{
+		$m.Name *info = new $m.Name;
+		memset(info,0,sizeof($m.Name));
+#set($h = 1)
+#foreach($f in $m.ServerFields)		
+#if ($m.Name == "quest_template" || $m.Name == "quest_wo_relation" || $m.Name == "quest_loot_item")
+		lua_rawgeti(L, -1, $h);
+#else
+		lua_getfield(L, -1, "$f.Name#**#");
+#end		
+#if($m.Name == "quest_template" && ($f.Name == "param0" || $f.Name == "param1"))
+		strncpy(info->$f.Name ,LUA_TOSTRING(L, -1),$f.DataLen);
+#elseif($f.SuperData)
+		int it_$f.Name = lua_gettop(L);
+		lua_pushnil(L);
+		uint32 i_$h = 0;
+		while(lua_next(L,it_$f.Name))	
+		{
+			if(lua_istable(L,-1))
+			{
+				lua_pop(L,2);
+				break;
+			}
+#if($f.type == "float")	
+			info->$f.Name [ i_$h++ ] = (float)LUA_TONUMBER(L, -1);
+#elseif($f.type == "uint32")
+			info->$f.Name [ i_$h++ ] = (uint32)LUA_TONUMBER(L, -1);
+#else
+			info->$f.Name [ i_$h++ ] = (int)LUA_TONUMBER(L, -1);
+#end
+			lua_pop(L,1);
+		}
+#elseif($f.type == "uint32")
+		info->$f.Name = (uint32)LUA_TONUMBER(L, -1);
+#elseif($f.type == "int")
+		info->$f.Name = (int)LUA_TONUMBER(L, -1);
+#elseif($f.type == "float")
+		info->$f.Name =  (float)LUA_TONUMBER(L, -1);
+#else
+		strncpy(info->$f.Name ,LUA_TOSTRING(L, -1),$f.DataLen);
+#if($f.Name == "name")
+		if(info->name[0] == '_' && info->name[1] == '_')
+		{
+			lua_pop(L,2);
+			delete info;
+			continue;
+		}
+#end
+#end
+		lua_pop(L,1);
+#set($h = $h + 1)
+#end
+
+		$m.Name#**#_db . insertVector(info);
+		lua_pop(L,1);
+	}
+	return true;
+}
+
+#end
+
+

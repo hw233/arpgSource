@@ -1,0 +1,34 @@
+#网关服务IP
+netgd_host = 127.0.0.1
+#网关服务端口
+netgd_port = 846
+
+#客户端IP
+centd_host = 127.0.0.1
+#客户端端口
+centd_port = 847
+
+#日志文件名称
+log_name = scened
+log_folder = "log/"
+
+#日志等级
+log_level = 0
+
+#素材文件夹路径
+data_folder = "SERVER_ROOT/template/"
+
+#屏蔽词库
+load_pingbi = Y
+
+#地图文件夹
+map_folder = "SERVER_ROOT/maps/"
+
+#脚本文件夹
+script_folder = "SERVER_ROOT/scripts/"
+
+#自动解析生物干道
+load_creature_path = Y
+
+#服务端允许客户端距离误差				
+error_distance = 2					

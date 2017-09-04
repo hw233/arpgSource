@@ -1,0 +1,11 @@
+2016-10-10 19:47:19,779 - Velocimacro : initialization complete.
+2016-10-10 19:47:19,779 - NVelocity successfully started.
+2016-10-10 19:47:19,979 - Velocimacro : added new VM : #gettype( i ) : source = Protocols.ts.vm
+2016-10-10 19:47:19,999 - Velocimacro : added new VM : #chg( str ) : source = Protocols.ts.vm
+2016-10-10 19:47:19,999 - Velocimacro : added new VM : #pack_func_param_string( m ) : source = Protocols.ts.vm
+2016-10-10 19:47:19,999 - Velocimacro : added new VM : #outDebugParas( m ) : source = Protocols.ts.vm
+2016-10-10 19:47:20,039 - ResourceManager : found Protocols.ts.vm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2016-10-10 19:47:20,152 - Velocimacro : VM addition rejected : gettype : inline not allowed to replace existing VM
+2016-10-10 19:47:20,152 - ResourceManager : found client.strutsvm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity
+2016-10-10 19:47:20,162 - Velocimacro : VM addition rejected : gettype : inline not allowed to replace existing VM
+2016-10-10 19:47:20,162 - ResourceManager : found client.msgtsvm with loader NVelocity.Runtime.Resource.Loader.FileResourceLoader,NVelocity

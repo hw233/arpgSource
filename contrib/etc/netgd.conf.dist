@@ -1,0 +1,20 @@
+#外部服务IP
+external_host = 0.0.0.0
+#外部服务端口
+external_port = 443
+#外部连接最大数量
+external_handles = 8000
+
+#内部服务IP
+internal_host = 127.0.0.1
+#内部服务端口
+internal_port = 7001
+#外部服务最大连接数量
+internal_handles = 5
+
+#日志文件名称
+log_name = netgd
+log_path = log/
+
+#日志等级
+log_level = 3

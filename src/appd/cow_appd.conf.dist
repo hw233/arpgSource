@@ -1,0 +1,28 @@
+#网关服务IP
+netgd_host = 127.0.0.1
+#网关服务端口
+netgd_port = 10086
+
+#中心服IP
+centd_host = 127.0.0.1
+#中心服端口
+centd_port = 10087
+
+#日志文件名称
+log_name = appd
+log_folder = log/
+
+#日志等级
+log_level = 0
+
+#素材文件夹路径
+data_folder = "../../../contrib/template/"
+
+#屏蔽词库
+load_pingbi = Y
+
+#地图文件夹
+map_folder = "../../../contrib/maps/"
+
+#脚本文件夹
+script_folder = "../../../contrib/scripts/"

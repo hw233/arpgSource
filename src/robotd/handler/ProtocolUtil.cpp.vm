@@ -1,0 +1,227 @@
+\#include "ProtocolUtil.h"
+
+void ProtocolUtil::ResetConn(core_socket::TcpConnection *conn)
+{
+	m_encipher.init(PROTO_TEA_C2S,PROTO_TEA_S2C);
+	m_conn = conn;
+}
+
+void ProtocolUtil::ResetWarConn(core_socket::TcpConnection *conn)
+{
+	m_war_encipher.init(PROTO_TEA_C2S,PROTO_TEA_S2C);
+	m_war_conn = conn;
+}
+
+UpdateMask ProtocolUtil::m_war_optcode;
+void ProtocolUtil::SetWarOptCode(vector<int> &war_optcode)
+{
+	m_war_optcode.Clear();
+	for (auto it:war_optcode)
+	{
+		m_war_optcode.SetBit(it);
+	}
+}
+
+void ProtocolUtil::SendToServer(ByteArray &bytes)
+{
+	string newKey;
+	static char tmp[4096];
+
+	bytes.position(0);
+	int optcode = bytes.readUnsignedShort();
+	core_socket::TcpConnection *conn;
+	core_socket::c2sencipher *encipher;
+	if(m_war_conn == nullptr || !m_war_optcode.GetBit(optcode))
+	{
+		conn = m_conn;
+		encipher = &m_encipher;
+	}
+	else
+	{
+		conn = m_war_conn;
+		encipher = &m_war_encipher;
+	}
+
+	if(optcode == CMSG_GET_SESSION){
+		MD5CryptToStr32((char*)bytes.data(), bytes.length(), tmp);
+		strcat(tmp,PROTO_MD5_KEY);			
+		newKey = tmp;
+	}
+	
+	//encipher->encode(&bytes);
+
+	if(optcode == CMSG_GET_SESSION)
+		encipher->init(newKey.c_str(),newKey.c_str());
+
+	conn->SendPacket(bytes);
+}
+
+#macro(pack_func_param_string_call $m)
+#set($is_first = 1)
+#foreach($i in $m.MsgParas)##
+#if($is_first == 1)
+#set($is_first = 0)
+#else
+,##
+#end
+#if($i.type == "String")##
+char const*$i.Name##
+#elseif($i.type == "ByteArray")##
+ByteArray &$i.Name##
+#elseif($i.IsArray)##
+const vector< $i.type > &$i.Name ##$i.type *$i.Name , uint16 len_$velocityCount##
+#elseif($str_tool.IsStruct($i.type))##
+$i.type *$i.Name##
+#else##
+$i.type $i.Name##
+#end##
+#end
+#end
+##############################################################
+#macro(pack_func_param_string $m)
+#foreach($i in $m.MsgParas)##
+#if($i.type == "ByteArray")##
+,ByteArray &$i.Name##
+#elseif($i.IsArray&&$i.type == "String")##
+,const string &$i.Name, uint16 len_$velocityCount##
+#elseif($i.type == "String")##
+,char const*$i.Name##
+#elseif($i.IsArray)##&&$str_tool.IsStruct($i.type)==0
+, $i.type *$i.Name , uint16 len_$velocityCount##
+#elseif($str_tool.IsStruct($i.type))##
+, $i.type *$i.Name##
+#else##
+,$i.type $i.Name##
+#end##
+#end
+#end
+##############################################################
+#macro(unpack_func_param_string $m)
+#foreach($i in $m.MsgParas)
+#if($i.type == "ByteArray")##
+,ByteArray &$i.Name##
+#elseif($i.IsArray&&$i.type == "String")##
+,const string &$i.Name, uint16 *len_$velocityCount##
+#elseif($i.type == "String")##
+,string &$i.Name##
+#elseif($i.IsArray)##&&$str_tool.IsStruct($i.type)==0
+, vector< $i.type > &$i.Name##
+#elseif($str_tool.IsStruct($i.type))##
+, $i.type **$i.Name##
+#else##
+,$i.type &$i.Name##
+#end
+#end
+#end
+##############################################################
+#macro(pack_func_param_string $m)
+#foreach($i in $m.MsgParas)##
+#if($i.type == "ByteArray")##
+,ByteArray &$i.Name##
+#elseif($i.IsArray&&$i.type == "String")##
+,const string &$i.Name, uint16 len_$velocityCount##
+#elseif($i.type == "String")##
+,char const*$i.Name##
+#elseif($i.IsArray)##&&$str_tool.IsStruct($i.type)==0
+, $i.type *$i.Name , uint16 len_$velocityCount##
+#elseif($str_tool.IsStruct($i.type))##
+, $i.type *$i.Name##
+#else##
+,$i.type $i.Name##
+#end##
+#end
+#end
+##############################################################
+#macro(read_value_string $i)
+#if($i.type=="uint8")##
+readUnsignedByte()##
+#elseif($i.type=="int8")##
+readByte()##
+#elseif($i.type=="uint16")##
+readUnsignedShort()##
+#elseif($i.type=="int16")##
+readShort()##
+#elseif($i.type=="int32")##
+readInt()##
+#elseif($i.type=="uint32")##
+readUnsignedInt()##
+#elseif($i.type=="float")##
+readFloat()##
+#elseif($i.type=="double")##
+readDouble()##
+#elseif($i.type=="int64")##
+readLongInt()##
+#elseif($i.type=="uint64")##
+readUnsignedLongInt()##
+#end##
+#end
+##############################################################
+#foreach( $m in $msgs )
+#if($m.Name.Substring(0,2)!="__"&&$m.IsBinLog==false)
+$m.desc
+int ProtocolUtil::unpack_$m.Name (ByteArray &bytes #unpack_func_param_string($m))
+{
+	int ret=0;
+#set($has_array_string = 0)
+#foreach($i in $m.MsgParas)
+#if($i.IsArray&&$i.type == "String")
+#set($has_array_string = 1)	
+#end
+#end
+#if($has_array_string == 1)
+	uint16 i = 0;
+#end
+#foreach($i in $m.MsgParas)
+	//$i.type
+#if($i.type == "ByteArray")
+	ASSERT(false);
+#elseif($i.IsArray&&$i.type == "String")
+	ASSERT(false);
+#elseif($i.type == "String")
+	$i.Name = bytes.readUTF();
+#elseif($i.IsArray && $str_tool.IsStruct($i.type))
+	ASSERT(false);
+#elseif($i.IsArray)
+	uint16 len = bytes.readUnsignedShort();
+	for (; len > 0; len--)
+	{
+		$i.Name. push_back(bytes.#read_value_string($i));
+	}
+#elseif($str_tool.IsStruct($i.type))
+	*$i.Name = ($i.type*)bytes.cur_data();
+	bytes.position(bytes.position() + sizeof($i.type));
+#else
+	$i.Name = bytes.#read_value_string($i);
+#end
+#end
+	return ret;
+}
+
+int ProtocolUtil::send_$m.Name (#pack_func_param_string_call($m))
+{
+	m_bytes.clear();
+	m_bytes.writeShort($str_tool.GetMsgType($m.Type)_$m.Name.ToUpper());
+	
+#foreach($i in $m.MsgParas)
+#if($i.type == "String")
+	m_bytes.writeUTF($i.Name);
+#elseif($i.type == "ByteArray")
+	m_bytes.writeBytes($i.Name);
+#elseif($i.IsArray)
+	m_bytes.writeShort($i.Name .size());
+	for (auto it:$i.Name)
+	{
+		m_bytes.writeT(it);
+	}
+#elseif($str_tool.IsStruct($i.type))
+	m_bytes.writeBytes((uint8*)$i.Name, sizeof($i.type));
+#else
+	m_bytes.writeBytes((uint8*)&$i.Name, sizeof($i.type));
+#end
+#end			
+	SendToServer(m_bytes);
+	return 0;
+}
+#end
+
+#end

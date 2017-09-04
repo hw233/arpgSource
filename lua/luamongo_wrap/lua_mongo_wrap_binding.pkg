@@ -1,0 +1,54 @@
+$#include <db_wrap/mongo_wrap.h>
+$#include "lua_mongo_wrap_binding_manual.h"
+
+enum Log_Level
+{
+	_NO_LOG=-1,
+	_DEBUG_L=0, //调试级别
+	_ERROR_L    //错误级别
+};
+
+enum Mongo_Result
+{
+	MONGO_RES_ERROR=-1,  //错误
+	MONGO_RES_SUCCESS=0,//成功
+	MONGO_RES_NULL    //返回空
+};
+
+class MongoWrap
+{
+	typedef std::map<string,string> Map;
+	typedef std::vector<uint32_t> Values;
+	typedef std::vector<string> StrValues;
+	typedef std::vector<Map> Results;
+	typedef int int32_t;
+	
+	MongoWrap();
+	virtual ~MongoWrap();
+		
+	bool Open(string host,unsigned short port,string user = "",string pwd = "",string dbname = "admin", int level=_NO_LOG, string logpath="");
+	bool Insert(string ns,Map& values);
+	bool Update(string ns,const Map& where,Map& values);
+	bool Delete(string ns,const Map& where);
+	
+	//查询单条记录
+	Mongo_Result Load(string ns,const Map& where,Map& result);
+	//查询多条记录
+	Mongo_Result Query(string ns,const Map& where,Results& results,const Map& outfield);
+	//查询多条记录并且排序
+	//Mongo_Result Sort_Query(string ns,const Map& where,Results& results,string orderKey, int32_t bySort,int32_t limitReslut);
+	
+	Mongo_Result Find( string ns,const Map& where,Results& results,string orderKey, int32_t bySort,int32_t limitResult  );
+
+
+	bool CheckNS(const string& ns);
+}
+
+
+class AsyncMongoDB
+{
+	void AsyncQuery(string ns,const MongoDB::Map& where, int32_t cb,string orderKey = "", int32_t bySort = 0,int32_t limitReslut = 0);
+	void AsyncUpdate(string ns,const Map& where,Map& values);
+	void AsyncInsert(string ns,const Map& values);
+}
+

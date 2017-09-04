@@ -1,0 +1,1 @@
+tolua++ -o lua_http_binding.cpp lua_http_binding.pkg

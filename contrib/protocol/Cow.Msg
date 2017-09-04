@@ -1,0 +1,1576 @@
+#类型名称，注释
+
+#
+null_action,both,0,/*无效动作*/,STATUS_NEVER,False
+
+#
+ping_pong,both,1,/*测试连接状态*/,STATUS_NEVER,False
+
+#
+forced_into,c2s,2,/*踢掉在线的准备强制登陆*/,STATUS_NEVER,False
+
+#
+get_session,c2s,3,/*获得Session对象*/,STATUS_NEVER,False
+	sessionkey,String,False,/**/
+	account,String,False,/*玩家id*/
+	version,String,False,/*版本*/
+
+#
+route_trace,both,4,/*网关服数据包路由测试*/,STATUS_NEVER,False
+	val,String,False,/**/
+
+#
+write_client_log,c2s,5,/*记录客户端日志*/,STATUS_NEVER,False
+	type,uint32,False,/*类型*/
+	uid,String,False,/*uid*/
+	guid,String,False,/*guid*/
+	log,String,False,/*内容*/
+
+#
+operation_failed,s2c,6,/*操作失败*/,STATUS_NEVER,False
+	type,uint16,False,/*操作类型*/
+	reason,uint16,False,/*失败原因*/
+	data,String,False,/*预留参数*/
+
+#
+sync_mstime,both,7,/*同步时间*/,STATUS_LOGGEDIN,False
+	mstime_now,uint32,False,/*服务器运行的毫秒数*/
+	time_now,uint32,False,/*自然时间*/
+	open_time,uint32,False,/*自然时间的服务器启动时间*/
+
+#对象更新
+ud_object,s2c,8,/*对象更新*/,STATUS_NEVER,True
+
+#对象更新控制协议
+ud_control,c2s,9,/*对象更新控制协议*/,STATUS_NEVER,False
+
+#对象更新控制协议结果
+ud_control_result,s2c,10,/*对象更新控制协议结果*/,STATUS_NEVER,True
+
+#GRID的对象更新
+grid_ud_object,s2c,11,/*GRID的对象更新*/,STATUS_NEVER,True
+
+#GRID的对象更新
+grid_ud_object_2,s2c,12,/*GRID的对象更新*/,STATUS_NEVER,True
+
+#
+login_queue_index,s2c,13,/*告诉客户端，目前自己排在登录队列的第几位*/,STATUS_NEVER,False
+	index,uint32,False,/*目前自己排在登录队列的第几位*/
+
+#
+kicking_type,s2c,14,/*踢人原因*/,STATUS_NEVER,False
+	k_type,uint32,False,/*踢人枚举*/
+
+#
+get_chars_list,c2s,15,/*获取角色列表*/,STATUS_AUTHED,False
+
+#
+chars_list,s2c,16,/*角色列表*/,STATUS_AUTHED,False
+	list,char_create_info,True,/*角色列表*/
+	faction_name,String,False,/*家族名称*/
+	queen_name,String,False,/*女王名称*/
+	icon,uint8,False,/*图标*/
+
+#
+check_name,c2s,17,/*检查名字是否可以使用*/,STATUS_AUTHED,False
+	name,String,False,/*名称*/
+
+#
+check_name_result,s2c,18,/*检查名字结果*/,STATUS_AUTHED,False
+	result,uint8,False,/*结果*/
+
+#
+char_create,c2s,19,/*创建角色*/,STATUS_AUTHED,False
+	info,char_create_info,False,/*角色创建信息*/
+
+#
+char_create_result,s2c,20,/*角色创建结果*/,STATUS_AUTHED,False
+	result,uint8,False,/*结果*/
+
+#
+delete_char,c2s,21,/*删除角色*/,STATUS_AUTHED,False
+	id,uint32,False,/*玩家ID*/
+
+#
+delete_char_result,s2c,22,/*角色删除结果*/,STATUS_AUTHED,False
+	result,uint8,False,/*结果*/
+
+#
+player_login,c2s,23,/*玩家登录*/,STATUS_AUTHED,False
+	guid,String,False,/*玩家ID*/
+
+#
+player_logout,c2s,24,/*玩家退出*/,STATUS_AUTHED,False
+
+#
+regularise_account,c2s,25,/*临时账号转正规*/,STATUS_NEVER,False
+	uid,String,False,/**/
+
+#
+char_remotestore,c2s,26,/*角色配置信息*/,STATUS_NEVER,False
+	key,uint32,False,/*类型*/
+	value,uint32,False,/*配置信息*/
+
+#
+char_remotestore_str,c2s,27,/*角色配置信息*/,STATUS_NEVER,False
+	key,uint32,False,/*类型*/
+	value,String,False,/*配置信息*/
+
+#
+teleport,c2s,28,/*传送，如果是C->S，mapid变量请填成传送点ID*/,STATUS_NEVER,False
+	intGuid,uint32,False,/*传送点intGuid*/
+
+#
+move_stop,both,29,/*停止移动*/,STATUS_NEVER,False
+	guid,uint32,False,/*玩家GUID*/
+	pos_x,uint16,False,/**/
+	pos_y,uint16,False,/**/
+
+#
+unit_move,both,30,/*unit对象移动*/,STATUS_LOGGEDIN,False
+	guid,uint32,False,/*怪物GUID*/
+	pos_x,uint16,False,/**/
+	pos_y,uint16,False,/**/
+	path,int8,True,/*路线*/
+
+#
+use_gameobject,c2s,31,/*使用游戏对象*/,STATUS_LOGGEDIN,False
+	target,uint32,False,/*目标*/
+
+#
+bag_exchange_pos,c2s,32,/*包裹操作-交换位置*/,STATUS_NEVER,False
+	src_bag,uint32,False,/*源包裹*/
+	src_pos,uint32,False,/*源位置*/
+	dst_bag,uint32,False,/*目标包裹*/
+	dst_pos,uint32,False,/*目标位置*/
+
+#
+bag_destroy,c2s,33,/*包裹操作-销毁物品*/,STATUS_NEVER,False
+	item_guid,String,False,/*物品guid*/
+	num,uint32,False,/*数量（预留）*/
+	bag_id,uint32,False,/*包裹ID*/
+
+#
+bag_item_split,c2s,34,/*分割物品*/,STATUS_NEVER,False
+	bag_id,uint8,False,/*包裹ID*/
+	src_pos,uint16,False,/*切割哪个位置物品*/
+	count,uint32,False,/*切割多少出去*/
+	dst_pos,uint16,False,/*切割到什么位置*/
+	dst_bag,uint8,False,/*切割到什么包裹*/
+
+#
+bag_item_user,c2s,35,/*使用物品*/,STATUS_NEVER,False
+	item_guid,String,False,/*物品guid*/
+	count,uint32,False,/*个数*/
+
+#
+bag_item_cooldown,s2c,36,/*下发物品冷却*/,STATUS_NEVER,False
+	list,item_cooldown_info,True,/*冷却信息列表*/
+
+#
+grid_unit_move,s2c,37,/*grid中的unit移动整体打包*/,STATUS_NEVER,True
+
+#
+grid_unit_move_2,s2c,38,/*grid中的unit移动整体打包2*/,STATUS_NEVER,True
+
+#
+exchange_item,c2s,39,/*兑换物品*/,STATUS_NEVER,False
+	entry,uint32,False,/*物品模版*/
+	count,uint32,False,/*兑换数量*/
+	tar_entry,uint32,False,/*兑换物品模版*/
+
+#
+bag_extension,c2s,40,/*背包扩展*/,STATUS_NEVER,False
+	bag_id,uint8,False,/*包裹*/
+	extension_type,uint8,False,/*扩展类型*/
+	bag_pos,uint32,False,/*开启位置*/
+
+#
+npc_get_goods_list,c2s,41,/*请求NPC商品列表*/,STATUS_NEVER,False
+	npc_id,uint32,False,/**/
+
+#
+npc_goods_list,s2c,42,/*Npc商品列表*/,STATUS_NEVER,False
+	goods,uint32,True,/*商品列表*/
+	npc_id,uint32,False,/**/
+
+#
+store_buy,c2s,43,/*购买商品*/,STATUS_NEVER,False
+	id,uint32,False,/*商品id*/
+	count,uint32,False,/*商品数量*/
+
+#
+npc_sell,c2s,44,/*出售物品*/,STATUS_NEVER,False
+	npc_id,uint32,False,/*NPCID*/
+	item_guid,String,False,/*物品guid*/
+	num,uint32,False,/*数量*/
+
+#
+npc_repurchase,c2s,45,/*回购物品*/,STATUS_NEVER,False
+	item_id,String,False,/*物品guid*/
+
+#
+avatar_fashion_enable,c2s,46,/*时装是否启用*/,STATUS_NEVER,False
+	pos,uint8,False,/*时装装备位置*/
+
+#
+questhelp_talk_option,c2s,47,/*任务对话选项*/,STATUS_NEVER,False
+	quest_id,uint32,False,/*任务ID*/
+	option_id,uint32,False,/*选项ID*/
+	value0,int32,False,/**/
+	value1,int32,False,/**/
+
+#
+taxi_hello,c2s,48,/*与NPC对话获得传送点列表*/,STATUS_NEVER,False
+	guid,uint32,False,/*npc guid*/
+
+#
+taxi_stations_list,s2c,49,/*发送传送点列表*/,STATUS_NEVER,False
+	npcid,uint32,False,/**/
+	stations,taxi_menu_info,True,/*传送点列表*/
+
+#
+taxi_select_station,c2s,50,/*选择传送点*/,STATUS_NEVER,False
+	station_id,uint32,False,/**/
+	guid,uint32,False,/**/
+
+#
+gossip_select_option,c2s,51,/*与NPC交流选择选项*/,STATUS_NEVER,False
+	option,uint32,False,/*选项ID*/
+	guid,uint32,False,/*NPCguid*/
+	unknow,String,False,/*输入值*/
+
+#
+gossip_hello,c2s,52,/*与NPC闲聊获取选项*/,STATUS_NEVER,False
+	guid,uint32,False,/*交流目标*/
+
+#
+gossip_message,s2c,53,/*发送闲聊信息和选项*/,STATUS_NEVER,False
+	npcid,uint32,False,/*NPC ID*/
+	npc_entry,uint32,False,/*npc模版id*/
+	option_id,uint32,False,/*闲聊素材表id*/
+	option_text,String,False,/*闲聊文本*/
+	gossip_items,gossip_menu_option_info,True,/*闲聊列表*/
+
+#
+questgiver_status_query,c2s,54,/*任务发布者状态查询*/,STATUS_NEVER,False
+	guid,uint32,False,/*NPC GUID*/
+
+#
+questgiver_status,s2c,55,/*任务NPC状态*/,STATUS_NEVER,False
+	guid,uint32,False,/*NPC GUI*/
+	status,uint8,False,/*状态*/
+
+#
+query_quest_status,both,56,/*查询任务状态*/,STATUS_NEVER,False
+	quest_array,quest_status,True,/**/
+
+#
+questhelp_get_canaccept_list,c2s,57,/*可接任务*/,STATUS_NEVER,False
+
+#
+questhelp_canaccept_list,s2c,58,/*下发可接任务列表*/,STATUS_NEVER,False
+	quests,uint32,True,/*任务列表*/
+
+#
+questupdate_faild,s2c,59,/*任务失败*/,STATUS_NEVER,False
+	reason,uint8,False,/*失败原因*/
+
+#
+questupdate_complete,s2c,60,/*任务条件完成*/,STATUS_NEVER,False
+	quest_id,uint32,False,/*任务ID*/
+
+#
+questlog_remove_quest,c2s,61,/*放弃任务*/,STATUS_NEVER,False
+	slot,uint8,False,/*任务下标位置*/
+	reserve,uint64,False,/*保留*/
+
+#
+questgiver_complete_quest,c2s,62,/*完成任务*/,STATUS_NEVER,False
+	guid,uint32,False,/*NPC_GUID*/
+	quest_id,uint32,False,/*任务ID*/
+	reward,uint8,False,/*选择奖励项*/
+
+#
+questhelp_next,s2c,63,/*完成任务后通知任务链的下个任务*/,STATUS_NEVER,False
+	current_id,uint32,False,/*当前任务*/
+	next_id,uint32,False,/*下一个任务*/
+	guid,uint32,False,/*NPC_GUID*/
+
+#
+questhelp_complete,c2s,64,/*任务系统强制完成任务*/,STATUS_NEVER,False
+	quest_id,uint32,False,/*任务ID*/
+	quest_statue,uint8,False,/*任务*/
+	reserve,uint8,False,/*保留*/
+
+#
+questupdate_accept,s2c,65,/*接受任务成功*/,STATUS_NEVER,False
+	quest_id,uint32,False,/*任务ID*/
+
+#
+questhelp_update_status,c2s,66,/*更新任务进度_下标数量*/,STATUS_NEVER,False
+	quest_id,uint32,False,/*任务ID*/
+	slot_id,uint32,False,/*下标ID*/
+	num,uint32,False,/*增加数量*/
+
+#
+questgetter_complete,s2c,67,/*任务已完成*/,STATUS_NEVER,False
+	quest_id,uint32,False,/*任务ID*/
+
+#
+questgiver_accept_quest,c2s,68,/*接任务*/,STATUS_NEVER,False
+	npcid,uint32,False,/*npcGUID*/
+	quest_id,uint32,False,/**/
+
+#
+questupdate_use_item,c2s,69,/*任务使用物品*/,STATUS_NEVER,False
+	item_id,uint32,False,/*任务物品ID*/
+
+#
+questhelp_query_book,c2s,70,/*查询天书任务*/,STATUS_NEVER,False
+	dynasty,uint32,False,/*朝代*/
+
+#
+questhelp_book_quest,s2c,71,/*下发可接天书任务*/,STATUS_NEVER,False
+	quest_id,uint32,False,/*任务ID*/
+
+#
+use_gameobject_action,s2c,72,/*玩家使用游戏对象以后的动作*/,STATUS_NEVER,False
+	player_id,uint32,False,/*玩家ID*/
+	gameobject_id,uint32,False,/*游戏对象ID*/
+
+#
+set_attack_mode,c2s,73,/*设置攻击模式*/,STATUS_NEVER,False
+	mode,uint8,False,/*模式*/
+	reserve,uint64,False,/*保留*/
+
+#
+select_target,both,74,/*选择目标*/,STATUS_NEVER,False
+	id,uint32,False,/*目标GUID*/
+
+#
+combat_state_update,s2c,75,/*进入战斗*/,STATUS_NEVER,False
+	cur_state,uint8,False,/*当前状态 0：脱离战斗 1：进入战斗*/
+
+#
+exp_update,s2c,76,/*经验更新*/,STATUS_NEVER,False
+	exp,int32,False,/*改变的经验*/
+	type,uint8,False,/*获得经验的类型*/
+	vip_exp,int32,False,/*VIP的经验显示*/
+
+#
+spell_start,both,77,/*客户端释放技能*/,STATUS_NEVER,False
+	spell_id,uint32,False,/*技能ID*/
+	target_pos_x,uint16,False,/**/
+	target_pos_y,uint16,False,/**/
+	caster,uint32,False,/**/
+	target,uint32,False,/*目标*/
+
+#
+spell_stop,both,78,/*施法停止*/,STATUS_NEVER,False
+	guid,String,False,/*停止施法者*/
+
+#
+jump,both,79,/*跳*/,STATUS_NEVER,False
+	guid,uint32,False,/*跳的对象*/
+	pos_x,float,False,/*目的地坐标*/
+	pos_y,float,False,/**/
+
+#
+resurrection,c2s,80,/*复活*/,STATUS_NEVER,False
+	type,uint8,False,/*0:原地复活 1:回城复活*/
+	reserve,uint64,False,/*保留*/
+
+#
+trade_request,both,81,/*交易发出请求*/,STATUS_NEVER,False
+	guid,String,False,/*被请求人guid*/
+
+#
+trade_reply,both,82,/*交易请求答复*/,STATUS_NEVER,False
+	guid,String,False,/*请求交易的人guid*/
+	reply,uint8,False,/*0:拒绝1:接受*/
+
+#
+trade_start,s2c,83,/*交易开始*/,STATUS_NEVER,False
+	guid,String,False,/*你的交易目标*/
+
+#
+trade_decide_items,both,84,/*交易确认物品*/,STATUS_NEVER,False
+	items,String,True,/*确认交易的物品*/
+	gold_ingot,int32,False,/*元宝*/
+	silver,int32,False,/*银子*/
+
+#
+trade_finish,s2c,85,/*交易完成*/,STATUS_NEVER,False
+
+#
+trade_cancel,both,86,/*交易取消*/,STATUS_NEVER,False
+
+#
+trade_ready,both,87,/*交易准备好*/,STATUS_NEVER,False
+
+#
+chat_unit_talk,s2c,88,/*生物讲话*/,STATUS_NEVER,False
+	guid,uint32,False,/*发言者id*/
+	content,uint32,False,/*发言内容摸版id*/
+	say,String,False,/*发言字符*/
+
+#
+chat_near,c2s,89,/*就近聊天*/,STATUS_NEVER,False
+	content,String,False,/*发言内容*/
+
+#
+chat_whisper,c2s,90,/*私聊*/,STATUS_NEVER,False
+	guid,String,False,/*玩家id*/
+	content,String,False,/*说话内容*/
+
+#
+chat_faction,both,91,/*阵营聊天*/,STATUS_NEVER,False
+	guid,String,False,/*玩家id*/
+	name,String,False,/*玩家名称*/
+	content,String,False,/*说话内容*/
+	faction,uint8,False,/*玩家阵营*/
+
+#
+chat_world,both,92,/*世界*/,STATUS_NEVER,False
+	guid,String,False,/*玩家guid*/
+	faction,uint8,False,/*玩家阵营*/
+	name,String,False,/*玩家名称*/
+	content,String,False,/*说话内容*/
+
+#
+chat_horn,both,93,/*喇叭*/,STATUS_NEVER,False
+	guid,String,False,/*玩家guid*/
+	faction,uint8,False,/*玩家阵营*/
+	name,String,False,/*玩家名称*/
+	content,String,False,/*说话内容*/
+
+#
+chat_notice,both,94,/*公告*/,STATUS_NEVER,False
+	id,uint32,False,/*公告id*/
+	content,String,False,/*公告内容*/
+	data,String,False,/*预留参数*/
+
+#
+query_player_info,c2s,95,/*查询玩家信息*/,STATUS_NEVER,False
+	guid,String,False,/*玩家guid*/
+	flag,uint32,False,/*每一位表示玩家各种信息*/
+	callback_id,uint32,False,/*回调ID*/
+
+#
+query_result_update_object,s2c,96,/*查询信息对象更新*/,STATUS_NEVER,True
+
+#
+receive_gift_packs,c2s,97,/*领取礼包*/,STATUS_NEVER,False
+
+#地图对象更新
+map_update_object,s2c,98,/*地图对象更新*/,STATUS_NEVER,True
+
+#战斗信息binlog
+fighting_info_update_object,s2c,99,/*战斗信息binlog*/,STATUS_NEVER,True
+
+#战斗信息binlog
+fighting_info_update_object_2,s2c,100,/*战斗信息binlog*/,STATUS_NEVER,True
+
+#
+instance_enter,c2s,101,/*进入副本*/,STATUS_NEVER,False
+	instance_id,uint32,False,/*副本ID*/
+
+#
+instance_next_state,c2s,102,/*向服务端发送副本进入下一阶段指令*/,STATUS_NEVER,False
+	level,uint16,False,/*进入关卡*/
+	param,uint32,False,/*预留参数*/
+
+#
+instance_exit,c2s,103,/*副本退出*/,STATUS_NEVER,False
+	reserve,uint32,False,/*保留*/
+
+#
+limit_activity_receive,c2s,104,/*限时活动领取*/,STATUS_NEVER,False
+	id,uint32,False,/*领取id*/
+	type,uint32,False,/*领取类型*/
+
+#
+kill_man,s2c,105,/*杀人啦~~！！！！*/,STATUS_NEVER,False
+	killer,String,False,/*杀人者*/
+	killer_name,String,False,/*杀人者名字*/
+	victim,String,False,/*被杀者*/
+	victim_name,String,False,/*被杀者名字*/
+
+#
+player_upgrade,s2c,106,/*玩家升级*/,STATUS_NEVER,False
+	guid,uint32,False,/*升级的玩家低位GUID*/
+
+#仓库存钱
+warehouse_save_money,c2s,107,/*仓库存钱*/,STATUS_NEVER,False
+	money,int32,False,/*多少钱*/
+	money_gold,int32,False,/*多少元宝*/
+	money_bills,int32,False,/*多少银票*/
+
+#仓库取钱
+warehouse_take_money,c2s,108,/*仓库取钱*/,STATUS_NEVER,False
+	money,int32,False,/*多少钱*/
+	money_gold,int32,False,/*多少元宝*/
+	money_bills,int32,False,/*多少银票*/
+
+#使用元宝操作某事
+use_gold_opt,c2s,109,/*使用元宝操作某事*/,STATUS_NEVER,False
+	type,uint8,False,/*操作类型*/
+	param,String,False,/*字符串*/
+
+#使用铜钱操作某事
+use_silver_opt,c2s,110,/*使用铜钱操作某事*/,STATUS_NEVER,False
+	type,uint8,False,/*使用铜钱类型*/
+
+#后台弹窗
+gm_rightfloat,s2c,111,/*后台弹窗*/,STATUS_NEVERSTATUS_NEVERSTATUS_NEVERSTATUS_NEVERSTATUS_NEVERSTATUS_NEVERSTATUS_NEVERSTATUS_NEVERSTATUS_NEVERSTATUS_NEVER,False
+	id,uint32,False,/*ID*/
+	end_time,uint32,False,/*结束时间*/
+	zone1,uint32,False,/*0-7点*/
+	zone2,uint32,False,/*8-13点*/
+	zone3,uint32,False,/*14-23点*/
+	subject,String,False,/*标题*/
+	content,String,False,/*内容*/
+	link,String,False,/*链接地址*/
+	mode,uint8,False,/*模式 0:根据zone1，zone2，zone3设置的时间段弹 1:进入游戏1分钟后弹*/
+
+#删除某条后台弹窗
+del_gm_rightfloat,s2c,112,/*删除某条后台弹窗*/,STATUS_NEVERSTATUS_NEVER,False
+	id,uint32,False,/*ID*/
+
+#
+sync_mstime_app,both,113,/*应用服同步时间*/,STATUS_LOGGEDIN,False
+	mstime_now,uint32,False,/*服务器运行的毫秒数*/
+	time_now,uint32,False,/*自然时间*/
+	open_time,uint32,False,/*自然时间的服务器启动时间*/
+
+#玩家打开某个窗口
+open_window,c2s,114,/*玩家打开某个窗口*/,STATUS_NEVER,False
+	window_type,uint32,False,/*窗口类型*/
+
+#禁言操作
+player_gag,c2s,115,/*禁言操作*/,STATUS_NEVER,False
+	player_id,String,False,/*玩家ID*/
+	end_time,uint32,False,/*结束时间*/
+	content,String,False,/*禁言理由*/
+
+#踢人操作
+player_kicking,c2s,116,/*踢人操作*/,STATUS_NEVER,False
+	player_id,String,False,/*玩家ID*/
+
+#合服通知
+merge_server_msg,s2c,117,/*合服通知*/,STATUS_NEVER,False
+	merge_host,String,False,/*合服域名*/
+	merge_port,uint32,False,/*合服端口*/
+	merge_key,String,False,/*合服sessionkey*/
+	merge_type,uint32,False,/*合服类型*/
+	reserve,uint32,False,/*预留*/
+	reserve2,uint32,False,/*预留2*/
+
+#
+rank_list_query,c2s,118,/*获取排行信息*/,STATUS_NEVER,False
+	call_back_id,uint32,False,/*回调号*/
+	rank_list_type,uint8,False,/*排行类型*/
+	start_index,uint16,False,/*开始*/
+	end_index,uint16,False,/*结束*/
+
+#
+rank_list_query_result,s2c,119,/*客户端获取排行榜返回结果*/,STATUS_NEVER,True
+
+#客户端热更场景模块后获取uint
+client_update_scened,c2s,120,/*客户端热更场景模块后获取uint*/,STATUS_NEVER,False
+
+#数值包
+num_lua,s2c,121,/*数值包*/,STATUS_NEVER,True
+
+#战利品拾取
+loot_select,c2s,122,/*战利品拾取*/,STATUS_NEVER,False
+	x,uint16,False,/*x*/
+	y,uint16,False,/*y*/
+
+#通知登录服把玩家传回游戏服
+goback_to_game_server,c2s,123,/*通知登录服把玩家传回游戏服*/,STATUS_NEVER,False
+
+#客户端把比赛人员数据传给比赛服
+world_war_CS_player_info,c2s,124,/*客户端把比赛人员数据传给比赛服*/,STATUS_NEVER,False
+
+#玩家加入或者离开某服务器
+join_or_leave_server,s2c,125,/*玩家加入或者离开某服务器*/,STATUS_NEVER,False
+	join_or_leave,uint8,False,/*加入或者离开*/
+	server_type,uint8,False,/*服务器类型*/
+	server_pid,uint32,False,/*服务器进程id*/
+	server_fd,uint32,False,/*服务器连接id*/
+	time,uint32,False,/*加入或者离开的时间点*/
+
+#客户端请求跨服人员数据
+world_war_SC_player_info,both,126,/*客户端请求跨服人员数据*/,STATUS_NEVER,True
+
+#客户端订阅信息
+clientSubscription,both,127,/*客户端订阅信息*/,STATUS_NEVER,False
+	guid,uint32,False,/*玩家guid*/
+
+#服务端下发lua脚本
+lua_script,s2c,128,/*服务端下发lua脚本*/,STATUS_NEVER,True
+
+#角色更改信息
+char_update_info,c2s,129,/*角色更改信息*/,STATUS_AUTHED,False
+	info,char_create_info,False,/*角色更改信息*/
+
+#通知客户端观察者的视角
+notice_watcher_map_info,s2c,130,/*通知客户端观察者的视角*/,STATUS_NEVER,False
+	wather_guid,String,False,/*观察者guid*/
+	map_id,uint32,False,/*地图id*/
+	instance_id,uint32,False,/*实例id*/
+
+#客户端订阅对象信息
+modify_watch,c2s,131,/*客户端订阅对象信息*/,STATUS_NEVER,False
+	opt,uint8,False,/*操作类型*/
+	cid,uint32,False,/*修改对象订阅*/
+	key,String,False,/*订阅key*/
+
+#跨服传送
+kuafu_chuansong,c2s,132,/*跨服传送*/,STATUS_NEVER,False
+	str_data,String,False,/*战斗信息*/
+	watcher_guid,String,False,/*观察者guid*/
+	reserve,uint32,False,/*预留参数*/
+
+#
+show_suit,c2s,133,/*显示当前装备*/,STATUS_NEVER,False
+	position,uint8,False,/*主背包位置*/
+
+#
+show_position,c2s,134,/*显示当前坐标*/,STATUS_NEVER,False
+	channel,uint8,False,/*频道id*/
+
+#
+gold_respawn,c2s,135,/*元宝复活*/,STATUS_NEVER,False
+	useGold,uint8,False,/*是否使用元宝*/
+
+#
+field_death_cooldown,s2c,136,/*野外死亡倒计时*/,STATUS_NEVER,False
+	type,uint8,False,/*原地复活类型,0:元宝,1:时间戳*/
+	value,uint32,False,/*时间戳或者元宝值*/
+	killername,String,False,/*杀人者名字*/
+	cooldown,uint16,False,/*自动复活倒计时*/
+	params,String,False,/*参数*/
+
+#
+mall_buy,c2s,137,/*商城购买*/,STATUS_NEVER,False
+	id,uint32,False,/*商品序列号*/
+	count,uint32,False,/*商品数量*/
+	time,uint32,False,/*时效ID*/
+
+#
+strength,c2s,139,/*强化*/,STATUS_NEVER,False
+	part,uint8,False,/*强化的位置*/
+
+#
+strength_success,s2c,140,/*强化成功*/,STATUS_NEVER,False
+	level,uint16,False,/*当前强化等级*/
+
+#强制所有人员进入到一个组队副本中
+forceInto,c2s,141,/*强制进入*/,STATUS_NEVER,False
+
+#
+create_faction,c2s,142,/*创建帮派*/,STATUS_NEVER,False
+	name,String,False,/*帮派名称*/
+	icon,uint8,False,/*icon*/
+
+#
+faction_upgrade,c2s,143,/*升级帮派*/,STATUS_NEVER,False
+
+#
+faction_join,c2s,144,/*申请加入帮派*/,STATUS_NEVER,False
+	id,String,False,/*帮派guid*/
+
+#
+raise_base_spell,c2s,145,/*申请升级技能*/,STATUS_NEVER,False
+	raiseType,uint8,False,/*技能类型*/
+	spellId,uint16,False,/*技能ID*/
+
+#
+upgrade_anger_spell,c2s,146,/*申请升阶愤怒技能*/,STATUS_NEVER,False
+	spellId,uint16,False,/*技能ID*/
+
+#
+raise_mount,c2s,147,/*申请升级坐骑*/,STATUS_NEVER,False
+
+#
+upgrade_mount,c2s,148,/*申请升阶坐骑*/,STATUS_NEVER,False
+	useItem,uint8,False,/*是否自动使用道具*/
+
+#
+upgrade_mount_one_step,c2s,149,/*申请一键升阶坐骑*/,STATUS_NEVER,False
+	useItem,uint8,False,/*是否自动使用道具*/
+
+#
+illusion_mount_active,c2s,150,/*申请解锁幻化坐骑*/,STATUS_NEVER,False
+	illuId,uint16,False,/*幻化坐骑ID*/
+
+#
+illusion_mount,c2s,151,/*申请幻化坐骑*/,STATUS_NEVER,False
+	illuId,uint16,False,/*幻化坐骑ID*/
+
+#
+ride_mount,c2s,152,/*申请骑乘*/,STATUS_NEVER,False
+
+#
+grid_unit_jump,s2c,153,/*grid中的unit跳跃*/,STATUS_NEVER,True
+
+#
+gem,c2s,154,/*宝石*/,STATUS_NEVER,False
+	part,uint8,False,/*宝石位置*/
+
+#
+change_battle_mode,c2s,155,/*请求切换模式*/,STATUS_NEVER,False
+	mode,uint8,False,/*需要切换的模式*/
+
+#
+peace_mode_cd,s2c,156,/*和平模式CD*/,STATUS_NEVER,True
+	mode,uint8,False,/*和平模式CD*/
+
+#
+divine_active,c2s,157,/*激活神兵*/,STATUS_NEVER,False
+	id,uint8,False,/*神兵ID*/
+
+#
+divine_uplev,c2s,158,/*激活神兵*/,STATUS_NEVER,False
+	id,uint8,False,/*神兵ID*/
+
+#
+divine_switch,c2s,159,/*切换神兵*/,STATUS_NEVER,False
+	id,uint8,False,/*神兵ID*/
+
+#
+jump_start,c2s,160,/*请求跳跃*/,STATUS_NEVER,False
+	pos_x,uint16,False,/*坐标x*/
+	pos_y,uint16,False,/*坐标x*/
+
+#
+enter_vip_instance,c2s,161,/*请求进入vip副本*/,STATUS_NEVER,False
+	id,uint16,False,/*vip副本序号id*/
+	hard,uint8,False,/*vip副本难度*/
+
+#
+sweep_vip_instance,c2s,162,/*请求扫荡vip副本*/,STATUS_NEVER,False
+	id,uint16,False,/*vip副本序号id*/
+
+#
+hang_up,c2s,163,/*进行挂机*/,STATUS_NEVER,False
+
+#
+hang_up_setting,c2s,164,/*进行挂机设置*/,STATUS_NEVER,False
+	value0,uint32,False,/*同PLAYER_FIELD_HOOK_BYTE0*/
+	value1,uint32,False,/*同PLAYER_FIELD_HOOK_BYTE1*/
+	value2,uint32,False,/*同PLAYER_FIELD_HOOK_BYTE2*/
+	value3,uint32,False,/*同PLAYER_FIELD_HOOK_BYTE3*/
+
+#
+enter_trial_instance,c2s,165,/*请求进入试炼塔副本*/,STATUS_NEVER,False
+
+#
+sweep_trial_instance,c2s,166,/*扫荡试炼塔副本*/,STATUS_NEVER,False
+
+#
+reset_trial_instance,c2s,167,/*重置试炼塔*/,STATUS_NEVER,False
+
+#
+sweep_instance_reward,s2c,168,/*扫荡副本奖励*/,STATUS_NEVER,False
+	inst_sub_type,uint8,False,/*扫荡副本子类型*/
+	data1,uint8,False,/*扫荡副本数据1*/
+	data2,uint8,False,/*扫荡副本数据2*/
+	data3,uint8,False,/*扫荡副本数据3*/
+	list,item_reward_info,True,/*道具列表*/
+
+#
+reenter_instance,c2s,169,/*重进副本*/,STATUS_NEVER,False
+
+# 里面的字段自己在程序中补全
+merry_go_round,s2c,170,/*走马灯信息*/,STATUS_NEVER,False
+
+#
+social_add_friend,c2s,171,/*添加好友*/,STATUS_NEVER,False
+	guid,String,False,/*好友GUID*/
+
+#
+social_sureadd_friend,c2s,172,/*同意添加好友*/,STATUS_NEVER,False
+	guid,String,False,/*好友GUID*/
+
+#
+social_gift_friend,c2s,173,/*赠送礼物*/,STATUS_NEVER,False
+	guid,String,False,/*好友GUID*/
+	gift,item_reward_info,True,/*礼物列表*/
+
+#
+social_recommend_friend,c2s,174,/*推荐好友列表*/,STATUS_NEVER,False
+
+#
+social_get_recommend_friend,s2c,175,/*推荐好友列表*/,STATUS_NEVER,False
+	list,social_friend_info,True,/*好友列表*/
+
+#
+social_revenge_enemy,c2s,176,/*复仇*/,STATUS_NEVER,False
+	guid,String,False,/*仇人GUID*/
+
+#
+social_del_friend,c2s,177,/*删除好友*/,STATUS_NEVER,False
+	guid,String,False,/*好友GUID*/
+
+#
+teleport_main_city,c2s,178,/*回城*/,STATUS_NEVER,False
+
+#
+chat_by_channel,c2s,179,/*不同频道聊天*/,STATUS_NEVER,False
+	channel,uint8,False,/*聊天频道*/
+	content,String,False,/*说话内容*/
+
+#
+send_chat,s2c,180,/*发送聊天*/,STATUS_NEVER,False
+	channel,uint8,False,/*聊天频道*/
+	guid,String,False,/*玩家guid*/
+	title,uint8,False,/*称号*/
+	name,String,False,/*名字*/
+	vip,uint8,False,/*VIP*/
+	zs,uint8,False,/*转生*/
+	lvl,uint8,False,/*等级*/
+	gender,uint8,False,/*头像*/
+	content,String,False,/*说话内容*/
+	to_guid,String,False,/*收到的guid*/
+	faction_guid,String,False,/*帮派guid*/
+
+#
+social_clear_apply,c2s,181,/*清空申请列表*/,STATUS_NEVER,False
+
+#
+msg_decline,c2s,182,/*设置拒绝接受消息*/,STATUS_NEVER,False
+	value0,uint32,False,/*PLAYER_FIELD_DECLINE_CHANNEL_BYTE0*/
+	value1,uint32,False,/*PLAYER_FIELD_DECLINE_CHANNEL_BYTE1*/
+
+#
+faction_get_list_result,s2c,183,/*帮派列表*/,STATUS_NEVER,False
+	list,faction_info,True,/*帮派列表*/
+	curpag,uint8,False,/*当前页*/
+	maxpag,uint8,False,/*最大页*/
+
+#
+faction_getlist,c2s,184,/*获取帮派列表*/,STATUS_NEVER,False
+	page,uint8,False,/*当前页*/
+	num,uint8,False,/*每页数量*/
+	grep,uint8,False,/*自动过滤*/
+
+#
+faction_manager,c2s,185,/*帮派管理*/,STATUS_NEVER,False
+	opt_type,uint8,False,/*操作类型*/
+	reserve_int1,uint16,False,/*预留int值1*/
+	reserve_int2,uint16,False,/*预留int值2*/
+	reserve_str1,String,False,/*预留string值1*/
+	reserve_str2,String,False,/*预留string值2*/
+
+#
+faction_member_operate,c2s,186,/*帮派成员操作*/,STATUS_NEVER,False
+	opt_type,uint8,False,/*操作类型*/
+	reserve_int1,uint16,False,/*预留int值1*/
+	reserve_int2,uint16,False,/*预留int值2*/
+	reserve_str1,String,False,/*预留string值1*/
+	reserve_str2,String,False,/*预留string值2*/
+
+#
+faction_fast_join,c2s,187,/*快速加入帮派*/,STATUS_NEVER,False
+
+#
+social_add_friend_byname,c2s,188,/*通过名字添加好友*/,STATUS_NEVER,False
+	name,String,False,/*好友name*/
+
+#
+read_mail,c2s,190,/*读邮件*/,STATUS_NEVER,False
+	indx,uint16,False,/*邮件索引*/
+
+#
+pick_mail,c2s,191,/*领取邮件*/,STATUS_NEVER,False
+	indx,uint16,False,/*邮件索引*/
+
+#
+remove_mail,c2s,192,/*删除邮件*/,STATUS_NEVER,False
+	indx,uint16,False,/*邮件索引*/
+
+#
+pick_mail_one_step,c2s,193,/*一键领取邮件*/,STATUS_NEVER,False
+
+#
+remove_mail_one_step,c2s,194,/*一键删除邮件*/,STATUS_NEVER,False
+
+#
+block_chat,c2s,195,/*屏蔽某人*/,STATUS_NEVER,False
+	guid,String,False,/*人物guid*/
+
+#
+cancel_block_chat,c2s,196,/*取消屏蔽*/,STATUS_NEVER,False
+	indx,uint8,False,/*索引*/
+
+#
+use_broadcast_gameobject,c2s,200,/*使用需要广播的游戏对象*/,STATUS_NEVER,False
+	target,uint32,False,/*gameobject uintguid*/
+
+#
+world_boss_enroll,c2s,201,/*世界BOSS报名*/,STATUS_NEVER,False
+
+#
+world_boss_fight,c2s,202,/*世界BOSS挑战*/,STATUS_NEVER,False
+
+#
+change_line,c2s,203,/*换线*/,STATUS_NEVER,False
+	lineNo,uint32,False,/*线号*/
+
+#
+roll_world_boss_treasure,c2s,204,/*roll世界BOSS箱子*/,STATUS_NEVER,False
+
+#
+roll_result,s2c,205,/*roll点结果*/,STATUS_NEVER,False
+	point,uint8,False,/*数值点*/
+	name,String,False,/*名字*/
+	isHighest,uint8,False,/*是否当前最高*/
+	timestamp,uint32,False,/*服务器结束roll点时间戳*/
+	rollid,uint8,False,/*rollid*/
+
+#
+boss_rank,s2c,206,/*当前BOSS伤害排名*/,STATUS_NEVER,False
+	rankType,uint8,False,/*boss类型*/
+	rankList,rank_info,True,/*排名*/
+	mine,uint8,False,/*我的排名*/
+
+#
+rank_add_like,c2s,207,/*排行榜点赞*/,STATUS_NEVER,False
+	type,uint8,False,/*排行榜类型*/
+	guid,String,False,/*GUID*/
+
+#
+rank_add_like_result,s2c,208,/*排行榜点赞结果*/,STATUS_NEVER,False
+	type,uint8,False,/*排行榜类型*/
+	guid,String,False,/*GUID*/
+	num,uint32,False,/*like*/
+
+#
+res_instance_enter,c2s,210,/*进入资源副本*/,STATUS_NEVER,False
+	id,uint8,False,/*副本类型*/
+
+#
+res_instance_sweep,c2s,211,/*扫荡资源副本*/,STATUS_NEVER,False
+	id,uint8,False,/*副本类型*/
+
+#
+show_map_line,c2s,212,/*查看本地图的分线号*/,STATUS_NEVER,False
+
+#
+send_map_line,s2c,213,/*返回本地图的分线号信息*/,STATUS_NEVER,False
+	info,line_info,True,/*分线号信息*/
+
+#
+item_notice,s2c,214,/*获得奖励提示*/,STATUS_NEVER,False
+	showType,uint8,False,/*显示位置类型*/
+	list,item_reward_info,True,/*道具列表*/
+
+#
+teleport_map,c2s,216,/*传送到某个世界地图*/,STATUS_NEVER,False
+	mapid,uint32,False,/*地图id*/
+	lineNo,uint32,False,/*分线号*/
+
+#
+teleport_field_boss,c2s,217,/*传送到野外boss旁边*/,STATUS_NEVER,False
+	mapid,uint32,False,/*地图id*/
+	lineNo,uint32,False,/*分线号*/
+
+#
+get_activity_reward,c2s,218,/*活跃度奖励*/,STATUS_NEVER,False
+	id,uint8,False,/*礼包序号*/
+	vip,uint8,False,/*vip奖励*/
+
+#
+get_achieve_reward,c2s,220,/*成就奖励*/,STATUS_NEVER,False
+	id,uint8,False,/*成就序号*/
+
+#
+get_achieve_all_reward,c2s,221,/*总成就奖励*/,STATUS_NEVER,False
+
+#
+set_title,c2s,222,/*装备称号*/,STATUS_NEVER,False
+	id,uint8,False,/*称号序号*/
+
+#
+init_title,c2s,223,/*初始化称号*/,STATUS_NEVER,False
+	id,uint8,False,/*称号序号*/
+
+#
+welfare_shouchong_reward,c2s,224,/*领取首充奖励*/,STATUS_NEVER,False
+
+#
+welfare_checkin,c2s,225,/*每日签到奖励*/,STATUS_NEVER,False
+
+#
+welfare_checkin_all,c2s,226,/*累积签到奖励*/,STATUS_NEVER,False
+	id,uint8,False,/*签到序号*/
+
+#
+welfare_checkin_getback,c2s,227,/*补签奖励*/,STATUS_NEVER,False
+	id,uint8,False,/*签到序号*/
+
+#
+welfare_level,c2s,228,/*等级奖励*/,STATUS_NEVER,False
+	id,uint8,False,/*等级序号*/
+
+#
+welfare_active_getback,c2s,229,/*活动找回奖励*/,STATUS_NEVER,False
+	id,uint8,False,/*活动类型*/
+	best,uint8,False,/*完美找回*/
+	num,uint16,False,/*找回次数*/
+
+#
+pick_quest_reward,c2s,230,/*领取任务奖励*/,STATUS_NEVER,False
+	indx,uint8,False,/*任务序号*/
+
+#
+talk_with_npc,c2s,231,/*和npc对话*/,STATUS_NEVER,False
+	entry,uint16,False,/*npcid*/
+	questId,uint16,False,/*任务id*/
+
+#
+use_virtual_item,c2s,232,/*使用虚拟物品*/,STATUS_NEVER,False
+	entry,uint16,False,/*itemid*/
+
+#
+pick_quest_chapter_reward,c2s,233,/*领取任务章节奖励*/,STATUS_NEVER,False
+	indx,uint8,False,/*章节id*/
+
+#
+kuafu_3v3_match,c2s,234,/*3v3跨服匹配*/,STATUS_NEVER,False
+
+#
+kuafu_match_start,s2c,235,/*跨服开始匹配*/,STATUS_NEVER,False
+	indx,uint8,False,/*跨服类型*/
+
+#
+kuafu_3v3_buytimes,c2s,236,/*3v3购买次数*/,STATUS_NEVER,False
+	num,uint8,False,/*购买次数*/
+	
+#
+kuafu_3v3_dayreward,c2s,237,/*3v3每日活跃奖励*/,STATUS_NEVER,False
+	id,uint8,False,/*购买次数*/
+
+#
+kuafu_3v3_getranlist,c2s,238,/*请求3v3排行榜*/,STATUS_NEVER,False
+	
+#
+kuafu_3v3_ranlist,s2c,239,/*3v3排行榜结果列表*/,STATUS_NEVER,False
+	list,String,False,/*列表*/
+
+#
+welfare_getalllist_getback,c2s,240,/*福利所有奖励列表*/,STATUS_NEVER,False
+	best,uint8,False,/*完美找回*/
+
+#
+welfare_rewardlist_getback,s2c,241,/*奖励列表*/,STATUS_NEVER,False
+	list,String,False,/*道具列表*/
+	cost,String,False,/*消耗资源*/
+
+#
+welfare_getall_getback,c2s,242,/*一键领取所有福利*/,STATUS_NEVER,False
+	best,uint8,False,/*完美找回*/
+
+#
+kuafu_3v3_getmyrank,c2s,248,/*请求3v3排行榜自己的名次*/,STATUS_NEVER,False
+	
+#
+kuafu_3v3_myrank,s2c,249,/*3v3排行榜自己的名次结果*/,STATUS_NEVER,False
+	rank,uint8,False,/*名次*/
+
+#
+kuafu_3v3_kill_detail,s2c,250,/*击杀数据*/,STATUS_NEVER,False
+	indx1,uint32,False,/*击杀者下标*/
+	indx2,uint32,False,/*被击杀者下标*/
+
+#
+kuafu_3v3_wait_info,s2c,251,/*跨服匹配等待数据*/,STATUS_NEVER,False
+	list,wait_info,True,/*匹配数据*/
+	
+#
+kuafu_3v3_cancel_match,both,252,/*取消匹配*/,STATUS_NEVER,False
+	type,uint32,False,/*取消匹配跨服类型*/
+
+#
+kuafu_3v3_match_oper,c2s,253,/*匹配到人,接受或者拒绝*/,STATUS_NEVER,False
+	oper,uint32,False,/*0:取消, 1:接受*/
+
+#
+kuafu_3v3_decline_match,s2c,254,/*拒绝比赛*/,STATUS_NEVER,False
+	type,uint32,False,/*拒绝匹配跨服类型*/
+
+#
+kuafu_xianfu_match,c2s,255,/*仙府夺宝跨服匹配*/,STATUS_NEVER,False
+	indx,uint8,False,/*仙府类型*/
+
+#
+kuafu_match_wait,s2c,256,/*单方跨服匹配等待*/,STATUS_NEVER,False
+	type,uint8,False,/*匹配类型*/
+	target,uint8,False,/*需要匹配个数*/
+	count,uint8,False,/*当前匹配个数*/
+	data,uint32,False,/*int参数*/
+	params,String,False,/*str参数*/
+	
+#
+kuafu_xianfu_minimap_info,s2c,257,/*仙府夺宝小地图信息*/,STATUS_NEVER,False
+
+#
+buy_xianfu_item,c2s,258,/*购买仙府进入券*/,STATUS_NEVER,False
+	type,uint8,False,/*仙府券类型*/
+	indx,uint8,False,/*购买类型*/
+	count,uint16,False,/*购买数量*/
+
+#
+xianfu_random_respawn,c2s,259,/*随机复活*/,STATUS_NEVER,False
+
+#
+doujiantai_fight,c2s,260,/*斗剑台挑战*/,STATUS_NEVER,False
+	rank,uint16,False,/*排名*/
+
+#
+doujiantai_buytime,c2s,261,/*斗剑台购买次数*/,STATUS_NEVER,False
+	num,uint8,False,/*排名*/
+
+#
+doujiantai_clearcd,c2s,262,/*斗剑台清理CD*/,STATUS_NEVER,False
+
+#
+doujiantai_first_reward,c2s,263,/*斗剑台首胜奖励*/,STATUS_NEVER,False
+	id,uint8,False,/*序号*/
+
+#
+doujiantai_get_enemys_info,both,265,/*斗剑台挑战对手信息*/,STATUS_NEVER,False
+
+#
+doujiantai_get_rank,c2s,266,/*斗剑台排行榜*/,STATUS_NEVER,False
+	startIdx,uint16,False,/*类型*/
+	endIdx,uint16,False,/*类型*/
+	
+#
+doujiantai_refresh_enemys,c2s,270,/*斗剑台刷新对手*/,STATUS_NEVER,False
+	
+
+#
+doujiantai_top3,both,271,/*斗剑台三甲*/,STATUS_NEVER,False
+	
+#
+use_jump_point,both,272,/*使用跳点*/,STATUS_NEVER,False
+	id,uint32,False,/*跳点id*/
+	
+#
+bag_item_sell,c2s,273,/*出售物品*/,STATUS_NEVER,False
+	item_guid,String,False,/*物品guid*/
+	count,uint32,False,/*个数*/
+	
+#
+bag_item_sort,c2s,274,/*整理物品*/,STATUS_NEVER,False
+
+#
+submit_quest_daily2,c2s,280,/*提交日常任务*/,STATUS_NEVER,False
+
+#
+attribute_changed,s2c,281,/*属性改变*/,STATUS_NEVER,False
+
+#
+bag_find_equip_better,s2c,282,/*背包有更强装备*/,STATUS_NEVER,False
+	item_id,uint32,False,/*物品id*/
+	pos,uint32,False,/*背包位置*/
+
+#
+module_active,s2c,283,/*模块解锁*/,STATUS_NEVER,False
+	moduleId,uint32,False,/*模块id*/
+
+#
+pick_daily2_quest_reward,c2s,284,/*领取日常任务奖励*/,STATUS_NEVER,False
+	indx,uint8,False,/*任务序号*/
+	
+#
+finish_now_guide,c2s,285,/*完成当前引导*/,STATUS_NEVER,False
+
+#
+get_cultivation_info,c2s,286,/*取得修炼场信息*/,STATUS_NEVER,False
+
+#
+update_cultivation_info,s2c,287,/*返回修炼场信息*/,STATUS_NEVER,False
+	start_time,uint32,False,/*修炼开始时间*/
+	lost,uint32,False,/*宝箱掠夺信息*/
+	
+#
+get_cultivation_rivals_info,c2s,288,/*取得当前所有修炼场对手信息*/,STATUS_NEVER,False
+
+#
+update_cultivation_rivals_info_list,s2c,289,/*返回修炼场对手信息*/,STATUS_NEVER,False
+	list,cultivation_rivals_info,True,/*对手信息列表*/
+
+#
+get_cultivation_reward,c2s,290,/*领取修炼场奖励*/,STATUS_NEVER,False
+
+#
+refresh_cultivation_rivals,c2s,291,/*刷新修炼场对手*/,STATUS_NEVER,False
+
+#
+plunder_cultivation_rival,c2s,292,/*掠夺修炼场对手*/,STATUS_NEVER,False
+	index,uint32,False,/*对手序号*/
+
+#	
+revenge_cultivation_rival,c2s,293,/*反击复仇修炼场对手*/,STATUS_NEVER,False
+	index,uint32,False,/*掠夺记录序号*/
+
+#	
+buy_cultivation_left_plunder_count,c2s,294,/*增加修炼场剩余挑战次数*/,STATUS_NEVER,False
+	count,uint32,False,/*购买数量*/
+	
+#
+show_cultivation_result_list,s2c,295,/*返回修炼场战斗结果*/,STATUS_NEVER,False
+	result,int32,False,/*战斗结果-1:失败  1:胜利*/
+	name,String,False,/*对方名称*/
+	list,item_reward_info,True,/奖励道具列表/
+	
+
+#
+get_login_activity_reward,c2s,296,/*领取登录大礼奖励*/,STATUS_NEVER,False
+	id,uint32,False,/*奖励id*/
+	
+#
+cast_spell_start,s2c,300,/*通知客户端释放蓄力技能*/,STATUS_NEVER,False
+	caster_guid,uint32,False,/*释放玩家*/
+	target_guid,uint32,False,/*攻击玩家*/
+	spellid,uint16,False,/*技能id*/
+	data,String,False,/*参数*/
+
+#
+finish_optional_guide_step,c2s,301,/*完成非强制引导的步骤*/,STATUS_NEVER,False
+	guide_id,uint32,False,/*引导id*/
+	step,uint8,False,/*引导分步骤*/
+
+#
+execute_quest_cmd_after_accepted,c2s,302,/*执行接到任务以后的命令*/,STATUS_NEVER,False
+	indx,uint16,False,/*任务序号下标*/
+	
+#
+show_unit_attribute,s2c,310,/*通知客户端显示属性*/,STATUS_NEVER,False
+	
+#
+back_to_famity,c2s,320,/*返回家族*/,STATUS_NEVER,False
+
+#
+faction_boss_send_result,s2c,321,/*返回家族boss结果*/,STATUS_NEVER,False
+	result,uint32,False,/*结果标识*/
+	boss_id,uint32,False,/*bossId*/
+	money,uint32,False,/*家族资金变化量*/
+
+#
+challange_boss,c2s,322,/*挑战boss*/,STATUS_NEVER,False
+
+#
+pick_offline_reward,c2s,325,/*领取离线奖励*/,STATUS_NEVER,False
+	
+#
+offline_reward_result,s2c,326,/*离线奖励结果*/,STATUS_NEVER,False
+	reserve,uint32,False,/*备用*/
+	reserve2,uint32,False,/*备用2*/
+	reserve3,uint32,False,/*备用3*/
+	reserve4,uint32,False,/*备用4*/
+	list,item_reward_info,True,/奖励道具列表/
+	
+#
+smelting_equip,c2s,327,/*熔炼装备*/,STATUS_NEVER,False
+	pos_str,String,False,/*装备pos 用竖线隔开*/
+	
+#
+storehouse_hand_in,c2s,328,/*上交装备*/,STATUS_NEVER,False
+	pos_str,String,False,/*装备pos 用竖线隔开*/
+	
+#
+storehouse_exchange,c2s,329,/*兑换装备*/,STATUS_NEVER,False
+	pos,uint32,False,/*宝库的pos*/
+
+#
+storehouse_destroy,c2s,330,/*销毁装备*/,STATUS_NEVER,False
+	pos,uint32,False,/*宝库的pos*/
+
+#
+send_faction_gift,c2s,331,/*赠送礼物*/,STATUS_NEVER,False
+	list,item_reward_info,True,/*礼物list*/
+	msg,String,False,/*留言*/
+	msg_type,uint32,False,/*留言类型*/
+
+#
+get_faction_gift_exreward,c2s,332,/*领取额外奖励*/,STATUS_NEVER,False
+	count_id,uint32,False,/*礼物的count_id*/
+
+#
+get_all_faction_gift_exreward,c2s,333,/*领取所有额外奖励*/,STATUS_NEVER,False
+
+#
+show_faction_gift_page,s2c,334,/*返回礼物列表*/,STATUS_NEVER,False
+
+#
+show_faction_gift_info,s2c,335,/*返回礼物信息*/,STATUS_NEVER,False
+
+#
+show_faction_gift_unthank_page,s2c,336,/*返回女王未感谢礼物*/,STATUS_NEVER,False
+
+#
+show_faction_gift_history_page,s2c,337,/*返回女王历史记录*/,STATUS_NEVER,False
+
+#
+get_faction_gift_rank_page,c2s,338,/*请求家族魅力排行*/,STATUS_NEVER,False
+	page,uint32,False,/*页数*/
+
+#
+show_faction_gift_rank_result_list,s2c,339,/*返回家族魅力排行*/,STATUS_NEVER,False
+	list,faction_gift_rank_info,True,/*排行列表*/
+	info,faction_gift_rank_info,False,/*本帮派排行信息*/
+	page,uint32,False,/*页数*/
+
+#
+show_faction_gift_rank_change,s2c,340,/*返回家族魅力排行变化*/,STATUS_NEVER,False
+	old_rank,uint32,False,/*原排行*/
+	new_rank,uint32,False,/*新排行*/
+	info,faction_gift_rank_info,False,/*本帮派排行信息*/
+	
+	
+#
+show_faction_gift_rank_info,s2c,341,/*返回本家族魅力排行*/,STATUS_NEVER,False
+	info,faction_gift_rank_info,False,/*本帮派排行信息*/
+
+#
+divine_forge,c2s,342,/*神兵强化*/,STATUS_NEVER,False
+	id,uint32,False,/*神兵id*/
+	count,uint32,False,/*次数*/
+	
+#
+divine_advance,c2s,343,/*神兵升阶*/,STATUS_NEVER,False
+	id,uint32,False,/*神兵id*/
+	
+#
+divine_spirit,c2s,344,/*神兵铸魂*/,STATUS_NEVER,False
+	id,uint32,False,/*神兵id*/
+	protect,uint32,False,/*失败保护*/
+	improve,uint32,False,/*提升概率*/
+
+#
+query_mass_boss_info,c2s,352,/*查询全民boss信息*/,STATUS_NEVER,False
+	id,uint8,False,/*全民boss编号*/
+	
+#
+mass_boss_info_ret,s2c,353,/*全民boss信息结果*/,STATUS_NEVER,False
+	count,uint32,False,/*全民boss参加人数*/
+	percent,uint8,False,/*当前boss血量*/
+
+#
+query_mass_boss_rank,c2s,354,/*查询全民boss排行榜*/,STATUS_NEVER,False
+	id,uint8,False,/*全民boss编号*/
+
+#
+mass_boss_rank_result,s2c,355,/*全民boss排行结果*/,STATUS_NEVER,False
+	info,mass_boss_rank_info,True,/*全民boss排名信息*/
+	
+#
+try_mass_boss,c2s,356,/*挑战全民boss*/,STATUS_NEVER,False
+	id,uint8,False,/*全民boss编号*/
+
+#
+buy_mass_boss_times,c2s,357,/*购买挑战全民boss次数*/,STATUS_NEVER,False
+	cnt,uint8,False,/*购买次数*/
+
+#
+group_instance_match,c2s,358,/*组队副本跨服匹配*/,STATUS_NEVER,False
+	indx,uint8,False,/*组队副本类型*/
+	
+#
+buy_group_instance_times,c2s,359,/*组队副本跨服次数购买*/,STATUS_NEVER,False
+	count,uint8,False,/*数量*/
+	
+#
+talisman_active,c2s,360,/*法宝激活*/,STATUS_NEVER,False
+	id,uint32,False,/*法宝id*/
+	
+#
+talisman_lvup,c2s,361,/*法宝注灵*/,STATUS_NEVER,False
+	id,uint32,False,/*法宝id*/
+
+#
+wings_active,c2s,362,/*神羽激活*/,STATUS_NEVER,False
+
+#
+wings_bless,c2s,363,/*神羽祝福*/,STATUS_NEVER,False
+
+#
+wings_rankup,c2s,364,/*神羽升阶*/,STATUS_NEVER,False
+
+#
+wings_strength,c2s,365,/*神羽强化*/,STATUS_NEVER,False
+
+#
+meridian_practise,c2s,366,/*经脉修炼*/,STATUS_NEVER,False
+	
+
+#
+add_meridian_exp,c2s,367,/*加经脉修炼经验值*/,STATUS_NEVER,False
+	id,uint8,False,/*修炼道具的序号列表*/
+	
+#
+raise_mount_level_base,c2s,368,/*提升坐骑等级*/,STATUS_NEVER,False
+	
+#
+active_mount,c2s,369,/*解锁坐骑*/,STATUS_NEVER,False
+	
+#
+show_faction_bossdefense_damage_list,s2c,370,/*家族领主挑战输出排行*/,STATUS_NEVER,False
+	list,mass_boss_rank_info,True,/*输出排行*/
+	
+#
+show_faction_tower_sweep_list,s2c,371,/*家族无尽远征扫荡结果*/,STATUS_NEVER,False
+	list,item_reward_info,True,/*扫荡物品*/
+
+#
+send_instance_result,s2c,375,/*副本结果*/,STATUS_NEVER,False
+	state,uint8,False,/*副本状态(249:副本失败,250:副本通关,251:副本未通关)*/
+	cd,uint8,False,/*副本cd*/
+	list,item_reward_info,True,/*道具列表*/
+	type,uint8,False,/*副本类型*/
+	data,String,False,/*额外数据*/
+
+#
+match_single_pvp,c2s,376,/*匹配单人pvp*/,STATUS_NEVER,False
+
+#
+buy_match_single_pvp_times,c2s,377,/*购买单人pvp次数*/,STATUS_NEVER,False
+	cnt,uint8,False,/*购买次数*/
+
+#
+pick_match_single_pvp_extra_reward,c2s,378,/*领取单人pvp额外奖励*/,STATUS_NEVER,False
+	id,uint8,False,/*领取序号*/
+
+#
+equipdevelop_operate,c2s,380,/*装备养成操作*/,STATUS_NEVER,False
+	opt_type,uint8,False,/*操作类型*/
+	reserve_int1,uint16,False,/*预留int值1*/
+	reserve_int2,uint16,False,/*预留int值2*/
+	reserve_str1,String,False,/*预留string值1*/
+	reserve_str2,String,False,/*预留string值2*/
+
+#
+active_appearance,c2s,381,/*激活外观*/,STATUS_NEVER,False
+	id,uint16,False,/*外观id*/
+
+#
+equip_appearance,c2s,382,/*装备外观*/,STATUS_NEVER,False
+	id,uint16,False,/*外观id*/
+	
+#
+cancel_equip_appearance,c2s,383,/*取消装备外观*/,STATUS_NEVER,False
+	type,uint8,False,/*外观类型*/
+
+#
+rename,c2s,384,/*改名*/,STATUS_NEVER,False
+	name,String,False,/*修改的名称*/
+
+#
+unlock_title,c2s,385,/*道具解锁称号*/,STATUS_NEVER,False
+	indx,uint8,False,/*称号id*/
+	
+
+#
+social_buy_revenge_times,c2s,386,/*购买复仇次数*/,STATUS_NEVER,False
+	count,uint8,False,/*次数*/
+
+#
+enter_risk_instance,c2s,387,/*请求进入世界冒险副本*/,STATUS_NEVER,False
+
+#
+social_remove_enemy,c2s,388,/*删除仇人*/,STATUS_NEVER,False
+	guid,String,False,/*guid*/
+	
+#
+get_player_overview,c2s,389,/*查看玩家详情*/,STATUS_NEVER,False
+	guid,String,False,/*玩家id*/
+	
+#
+show_player_overview,s2c,390,/*返回玩家详情*/,STATUS_NEVER,False
+	guid,String,False,/*玩家id*/
+	name,String,False,/*名称*/
+	force,uint32,False,/*战力*/
+	vip,uint32,False,/*vip*/
+	title,uint32,False,/*称号*/
+	gender,uint32,False,/*性别*/
+	coat,uint32,False,/*外观*/
+	weapon,uint32,False,/*武器外观*/
+
+#
+send_faction_invite,c2s,391,/*邀请加入帮派*/,STATUS_NEVER,False
+	guid,String,False,/*玩家id*/	
+	
+#
+show_faction_invite,s2c,392,/*显示邀请*/,STATUS_NEVER,False
+	guid,String,False,/*玩家id*/
+	name,String,False,/*玩家名称*/
+	faction_guid,String,False,/*家族id*/
+	faction_name,String,False,/*家族名称*/
+
+#
+buy_vipgift,c2s,393,/*购买vip礼包*/,STATUS_NEVER,False
+	id,uint32,False,/*礼包id*/
+	
+#
+activity_opt_buy_dailygift,c2s,394,/*购买活动每日礼包*/,STATUS_NEVER,False
+	act_id,uint32,False,/*活动id*/
+	index,uint32,False,/*礼包下标*/
+	
+#
+draw_lottery,c2s,395,/*抽奖*/,STATUS_NEVER,False
+	actId,uint32,False,/*活动id*/
+	type,uint8,False,/*类型*/
+	
+#
+activity_opt_get_rank_process_reward,c2s,396,/*获取活动开服排行进度奖励*/,STATUS_NEVER,False
+	act_id,uint32,False,/*活动id*/
+	index,uint32,False,/*奖励下标*/
+	
+#
+activity_opt_get_rank_list,c2s,397,/*获取活动开服排行榜*/,STATUS_NEVER,False
+	act_id,uint32,False,/*活动id*/
+	
+#
+activity_opt_show_rank_list,s2c,398,/*返回活动开服排行榜*/,STATUS_NEVER,False
+	act_id,uint32,False,/*活动id*/
+	list,act_rank_info,True,/*排行列表*/
+	
+#
+activity_opt_buy_limitgift,c2s,399,/*购买活动限定礼包*/,STATUS_NEVER,False
+	act_id,uint32,False,/*活动id*/
+	index,uint32,False,/*礼包下标*/
+	
+#
+welfare_get_recharge_reward,c2s,400,/*领取累计充值奖励*/,STATUS_NEVER,False
+	id,uint8,False,/*奖励id*/
+	
+#
+welfare_get_consume_reward,c2s,401,/*领取累计消费奖励*/,STATUS_NEVER,False
+	id,uint8,False,/*奖励id*/
+
+#
+welfare_get_sevenday_reward,c2s,402,/*领取七日大礼奖励*/,STATUS_NEVER,False
+	id,uint8,False,/*奖励id*/
+	
+#
+send_server_open_time,s2c,403,/*服务器开服时间*/,STATUS_NEVER,False
+	open_time,uint32,False,/*时间戳*/
+
+#
+risk_get_rank,c2s,404,/*请求世界冒险排行榜*/,STATUS_NEVER,False
+	
+
+#
+risk_get_rank_result,s2c,405,/*世界冒险排行榜信息 */,STATUS_NEVER,False
+	list,act_rank_info,True,/*排行列表*/
+
+#
+set_orient,c2s,406,/*设置朝向*/,STATUS_NEVER,False
+	angle,uint16,False,/*角度*/

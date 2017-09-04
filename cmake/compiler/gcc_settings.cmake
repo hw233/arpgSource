@@ -1,0 +1,35 @@
+#add_definitions(-fno-delete-null-pointer-checks)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DDEBUG_")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread -lrt -ldl")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -lrt -ldl")
+add_definitions(-D_GLIBCXX_USE_NANOSLEEP)
+
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+endif()
+
+if( USE_SFMT)
+  add_definitions(-msse2)
+  message(STATUS "- GCC: SFMT enabled, SSE2 flag forced")
+endif()
+
+if( WITH_WARNINGS )
+  add_definitions(-Wall -Wfatal-errors -Wextra)
+  message(STATUS "- GCC: All warnings enabled")
+else()
+  add_definitions(--no-warnings)
+  message(STATUS "- GCC: All warnings disabled")
+endif()
+
+if( WITH_COREDEBUG )
+  add_definitions(-ggdb3)
+  message(STATUS "- GCC: Debug-flags set (-ggdb3)")
+endif()
+
+if( WITH_G_PERFTOOLS )
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DGOOGLE_PERFTOOLS")
+  add_definitions(-fno-omit-frame-pointer)
+  set(cow_libs ${cow_libs} profiler)
+endif()

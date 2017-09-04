@@ -1,0 +1,93 @@
+$#include "lua_item_binding_manual.h"
+
+$#include "Item.h"
+$#include "ItemManager.h"
+$#include <string>
+$#include <map>
+$#include <stdint.h>
+$#include <core_obj/GuidObject.h>
+
+
+$using core_obj::GuidObject;
+$using std::string;
+
+//物品类
+class Item
+{
+
+	Item();
+	virtual ~Item();
+
+	int GetId();
+	
+	int GetEntry();
+	void SetEntry(int value);
+
+	int GetCount();
+	void SetCount(int value);
+
+	bool GetBit(int pos);
+	void SetBit(int pos);
+	void UnSetBit(int pos);
+
+	void SetAttr(const string& key,double values );
+	double GetAttr(string key);
+	void ClearAttr();
+	
+	//设置基础属性
+	void SetBaseAttr(unsigned int pos,int key,double val,int qua);
+	//添加基础属性
+	void AddBaseAttr(int key,double val,int qua);
+	//清空基础属性
+	void ClearBaseAttr();
+	void ForEachBaseAttr(std::function<void (int, double)> func);
+	
+	string GetGuid();
+	bool FromString(const string& s);
+	string ToString() const;
+};
+
+
+
+class ItemManager
+{
+	ItemManager();
+	virtual ~ItemManager();
+	void Init(GuidObject *obj);
+
+	//根据位置找物品,找不到返回空
+	Item *GetByPos(int bag_type,int pos);
+	//根据物品ID找物品
+	Item *Get(int id);
+	//根据物品guid找物品
+	Item *GetItemByGuid(const string guid);
+	//插入一个物品对象,返回物品ID
+	int Add(const Item& item,int bag,int pos=-1);
+	//删除物品,返回是否成功
+	bool Del(int id);
+	//扣除指定模板的物品 TODO绑定这块在哪处理好呢 另外起接口比较合理。。
+	int Sub(int entry, int count,int bag);
+
+	//保存物品
+	void Save(const Item& item, int bag, int pos);
+	//保存物品,这是不拷贝保存
+	void SavePtr(const Item* item);
+	//移动物品
+	void Move(int id,  int to_bag, int to_pos);	
+	
+	void ForEachBagItem(int bag, std::function<void (Item*)> func);
+	//获得物品管理器guid
+	const string& GetGuid();
+	
+	//统计指定物品数量
+	int CountEntey(int entry,int bag);
+	//背包剩余空位
+	int GetEmptyCount(int bag);
+	//包裹实际大小
+	int GetBagSize(int bag);
+	void SetBagSize(int bag,int size);
+	//从包裹内部找空位
+	int GetEmptyPos(int bag);
+};
+
+

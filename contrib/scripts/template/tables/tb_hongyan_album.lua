@@ -1,0 +1,55 @@
+---------------------------------------------------------------------------------
+--------------------------以下代码为自动生成，请勿手工改动-----------------------
+---------------------------------------------------------------------------------
+
+
+tb_hongyan_album = {
+	--  id:int	ID
+	--  need_friendly:array	需求美女友好度
+	--  fashion_id:int	需要激活时装ID
+	[1] = {id = 1,need_friendly = {1,1,9999},fashion_id = 0,},
+	[2] = {id = 2,need_friendly = {1,4700,9999},fashion_id = 2,},
+	[3] = {id = 3,need_friendly = {2,1,9999},fashion_id = 0,},
+	[4] = {id = 4,need_friendly = {2,4700,9999},fashion_id = 7,},
+	[5] = {id = 5,need_friendly = {3,1,9999},fashion_id = 0,},
+	[6] = {id = 6,need_friendly = {3,4700,9999},fashion_id = 12,},
+	[7] = {id = 7,need_friendly = {4,1,9999},fashion_id = 0,},
+	[8] = {id = 8,need_friendly = {4,4700,9999},fashion_id = 17,},
+	[9] = {id = 9,need_friendly = {5,1,9999},fashion_id = 0,},
+	[10] = {id = 10,need_friendly = {5,100,9999},fashion_id = 22,},
+	[11] = {id = 11,need_friendly = {5,4700,9999},fashion_id = 25,},
+	[12] = {id = 12,need_friendly = {6,1,9999},fashion_id = 0,},
+	[13] = {id = 13,need_friendly = {6,4700,9999},fashion_id = 0,},
+	[14] = {id = 14,need_friendly = {7,1,9999},fashion_id = 0,},
+	[15] = {id = 15,need_friendly = {7,4700,9999},fashion_id = 0,},
+	[16] = {id = 16,need_friendly = {8,1,9999},fashion_id = 0,},
+	[17] = {id = 17,need_friendly = {8,4700,9999},fashion_id = 0,},
+	[18] = {id = 18,need_friendly = {9,1,9999},fashion_id = 0,},
+	[19] = {id = 19,need_friendly = {9,4700,9999},fashion_id = 0,},
+	[20] = {id = 20,need_friendly = {10,1,9999},fashion_id = 0,},
+	[21] = {id = 21,need_friendly = {10,4700,9999},fashion_id = 0,},
+	[22] = {id = 22,need_friendly = {11,1,9999},fashion_id = 0,},
+	[23] = {id = 23,need_friendly = {11,4700,9999},fashion_id = 0,},
+	[24] = {id = 24,need_friendly = {12,1,9999},fashion_id = 0,},
+	[25] = {id = 25,need_friendly = {12,4700,9999},fashion_id = 0,},
+	[26] = {id = 26,need_friendly = {13,1,9999},fashion_id = 0,},
+	[27] = {id = 27,need_friendly = {13,4700,9999},fashion_id = 0,},
+	[28] = {id = 28,need_friendly = {14,1,9999},fashion_id = 0,},
+	[29] = {id = 29,need_friendly = {14,4700,9999},fashion_id = 0,},
+	[30] = {id = 30,need_friendly = {15,1,9999},fashion_id = 0,},
+	[31] = {id = 31,need_friendly = {15,4700,9999},fashion_id = 0,},
+	[32] = {id = 32,need_friendly = {16,1,9999},fashion_id = 0,},
+	[33] = {id = 33,need_friendly = {16,4700,9999},fashion_id = 0,},
+	[34] = {id = 34,need_friendly = {17,1,9999},fashion_id = 0,},
+	[35] = {id = 35,need_friendly = {17,4700,9999},fashion_id = 0,},
+	[36] = {id = 36,need_friendly = {18,1,9999},fashion_id = 0,},
+	[37] = {id = 37,need_friendly = {18,4700,9999},fashion_id = 0,},
+	[38] = {id = 38,need_friendly = {19,1,9999},fashion_id = 0,},
+	[39] = {id = 39,need_friendly = {19,4700,9999},fashion_id = 0,},
+	[40] = {id = 40,need_friendly = {20,1,9999},fashion_id = 0,},
+	[41] = {id = 41,need_friendly = {20,4700,9999},fashion_id = 0,},
+	[42] = {id = 42,need_friendly = {21,1,9999},fashion_id = 0,},
+	[43] = {id = 43,need_friendly = {21,4700,9999},fashion_id = 0,},
+	[44] = {id = 44,need_friendly = {22,1,9999},fashion_id = 0,},
+	[45] = {id = 45,need_friendly = {22,4700,9999},fashion_id = 0,},
+}

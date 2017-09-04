@@ -1,0 +1,5 @@
+add_subdirectory(luacocos)
+add_subdirectory(luacore_obj)
+add_subdirectory(luahttp)
+add_subdirectory(luasocket)
+add_subdirectory(luamongo_wrap)

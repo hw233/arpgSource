@@ -1,0 +1,51 @@
+#网关服务IP
+netgd_host = 127.0.0.1
+#网关服务端口
+netgd_port = 846
+
+#客户端IP
+centd_host = 127.0.0.1
+#客户端端口
+centd_port = 847
+
+#角色数据库连接字符串
+db_chars_log = "log/db_chars"
+db_character = "127.0.0.1;27017;dev;asdf;cow_char"
+db_chars_connection = 1
+
+#日志文件名称
+log_name = logind
+log_folder = log/
+
+#日志等级
+log_level = 0
+
+#素材文件夹路径
+data_folder = "SERVER_ROOT/template/"
+
+#屏蔽词库
+load_pingbi = Y
+
+#地图文件夹
+map_folder = "SERVER_ROOT/maps/"
+
+#脚本文件夹
+script_folder = "SERVER_ROOT/scripts/"
+
+#平台ID
+platform_id = 24
+
+#与平台通讯密钥
+login_key = "kKQDyPpWdJH46ulUf3MwxNZRjXoIzaGV"
+
+#服务器ID
+server_id = "0"
+
+#最大允许在线人数
+max_player_count = 1000
+
+#轮询等待玩家是否可以进入游戏的时间间隔
+login_queue_interval = 3000
+
+#中心服检测版本需求,20秒检测一次,单位秒
+versions_requirements_internal = 20

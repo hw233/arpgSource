@@ -1,0 +1,166 @@
+#类型名称，注释
+
+#坐标结构体
+point,/*坐标结构体*/
+	pos_x,float,0,/*坐标X*/
+	pos_y,float,0,/*坐标Y*/
+
+#传送地点结构体
+taxi_menu_info,/*传送地点结构体*/
+	id,int32,0,/**/
+	taxi_text,String,50,/*传送地点名称*/
+	map_id,uint32,0,/*地图ID*/
+	pos_x,uint16,0,/*坐标X*/
+	pos_y,uint16,0,/*坐标Y*/
+
+#玩家角色创建选择信息
+char_create_info,/*玩家角色创建选择信息*/
+	name,String,50,/*名称*/
+	faction,uint8,0,/*阵营*/
+	gender,uint8,0,/*性别*/
+	level,uint16,0,/*等级*/
+	guid,String,50,/**/
+	head_id,uint32,0,/*头像*/
+	hair_id,uint32,0,/*发型ID*/
+	race,uint8,0,/*种族，猛男美女萝莉那些*/
+	inviteGuid,String,50,/*邀请的帮派id*/
+	faction_name,String,50,/*创建的帮派名称*/
+	icon,uint8,0,/*创建的帮派标志*/
+
+#任务菜单
+quest_option,/*任务菜单*/
+	quest_id,uint32,0,/*任务id*/
+	quest_icon,uint32,0,/*图标*/
+	quest_level,uint16,0,/*任务等级*/
+	quest_title,String,50,/*任务标题*/
+	flags,uint32,0,/*标识*/
+
+#可接任务信息
+quest_canaccept_info,/*可接任务信息*/
+	quest_id,uint32,0,/*任务ID*/
+	quest_type,uint8,0,/*任务类别*/
+	title,String,50,/*标题*/
+	npc_id,uint32,0,/*接受任务NPC模板id*/
+	quest_level,uint32,0,/*任务等级*/
+
+#闲聊选项结构体
+gossip_menu_option_info,/*闲聊选项结构体*/
+	id,int32,0,/*id*/
+	option_icon,int32,0,/*选项icon图标*/
+	option_title,String,200,/*选项文本*/
+
+#物品冷却
+item_cooldown_info,/*物品冷却*/
+	item,uint32,0,/*物品摸版*/
+	cooldown,uint32,0,/*冷却时间*/
+
+#任务状态
+quest_status,/*任务状态*/
+	quest_id,uint16,0,/*任务ID*/
+	status,uint8,0,/*任务状态*/
+
+#道具奖励信息
+item_reward_info,/*道具奖励信息*/
+	item_id,uint16,0,/*道具id*/
+	num,uint32,0,/*道具数量*/
+
+#好友信息
+social_friend_info,/*好友信息*/
+	guid,String,50,/*好友guid*/
+	name,String,50,/*名字*/
+	faction,String,50,/*帮派*/
+	level,uint16,0,/*等级*/
+	icon,uint16,0,/*头像*/
+	vip,uint16,0,/*头像*/
+
+#帮派信息
+faction_info,/*帮派信息*/
+	faction_guid,String,50,/*帮派guid*/
+	faction_name,String,50,/*名字*/
+	faction_bz,String,50,/*帮主名字*/
+	faction_gg,String,108,/*公告*/
+	level,uint16,0,/*等级*/
+	icon,uint8,0,/*头像*/
+	player_count,uint16,0,/*帮派人数*/
+	minlev,uint16,0,/*等级限制*/
+
+#排名信息
+rank_info,/*排名信息*/
+	name,String,50,/*名字*/
+	value,float,0,/*伤害百分比*/
+
+#分线号结构体
+line_info,/*坐标结构体*/
+	lineNo,uint16,0,/*分线号*/
+	rate,uint8,0,/*玩家比率*/
+
+#等待信息
+wait_info,/*等待信息*/
+	name,String,50,/*名字*/
+	state,int8,0,/*状态*/
+
+#修炼场对手信息
+cultivation_rivals_info,/*修炼场对手信息*/
+	index,uint32,0,/*序号*/
+	name,String,50,/*名字*/
+	level,uint32,0,/*等级*/
+	weapon,uint32,0,/*武器*/
+	avatar,uint32,0,/*外观*/
+	divine,uint32,0,/*神兵*/
+	force,uint32,0,/*战力*/
+	chest,uint32,0,/*宝箱*/
+	gender,uint32,0,/*性别*/
+	
+#家族礼物信息
+faction_gift_info,/*家族礼物信息*/
+	rank,uint32,0,/*排行*/
+	id,uint32,0,/*id*/
+	point,uint32,0,/*魅力值*/
+	thank,uint32,0,/*感谢标识*/
+	reply,uint32,0,/*女王回复标识*/
+	time,uint32,0,/*时间*/
+	count_id,uint32,0,/*count_id*/
+	guid,String,50,/*赠送者guid*/
+	msg,String,50,/*赠送者留言*/
+	item_list,String,150,/*赠送道具信息*/
+	reply_list,String,100,/*回复信息*/
+	
+#家族魅力排行信息
+faction_gift_rank_info,/*家族魅力排行信息*/
+	rank,uint32,0,/*排行*/
+	point,uint32,0,/*魅力值*/
+	queen_name,String,50,/*女王名称*/
+	faction_name,String,50,/*家族名称*/
+	guard_name,String,50,/*骑士名称*/
+	faction_flag,uint32,0,/*家族旗子*/
+	queen_vip,uint32,0,/*女王vip等级*/
+	guard_vip,uint32,0,/*骑士vip等级*/
+	
+#全民boss信息
+mass_boss_info,/*全民boss信息*/
+	id,uint8,0,/*全民boss编号*/
+	state,uint8,0,/*全民boss状态*/
+	time,uint32,0,/*全民boss刷新时间*/
+	percent,uint8,0,/*boss血量*/
+	count,uint16,0,/*挑战boss人数*/
+
+#全民boss排名
+mass_boss_rank_info,/*全民boss排名*/
+	name,String,50,/*名称*/
+	dam,double,0,/*伤害*/
+
+#装备信息
+equip_info,/*装备信息*/
+	equip,String,50,/*装备信息*/
+	strength_lv,uint32,0,/*强化*/
+	refine_rank,uint32,0,/*精炼阶级*/
+	refine_star,uint32,0,/*精炼星级*/
+	gem1_lv,uint32,0,/*宝石1等级*/
+	gem2_lv,uint32,0,/*宝石1等级*/
+	gem3_lv,uint32,0,/*宝石1等级*/
+	
+	
+#全民boss排名
+act_rank_info,/*开服活动排名*/
+	name,String,50,/*名称*/
+	value,uint32,0,/*数值*/

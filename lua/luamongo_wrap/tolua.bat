@@ -1,0 +1,1 @@
+tolua++ -o lua_mongo_wrap_binding.cpp lua_mongo_wrap_binding.pkg

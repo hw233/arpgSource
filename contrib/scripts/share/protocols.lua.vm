@@ -1,0 +1,411 @@
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------协议，本代码是自动生成，请勿手工改动----------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+local Packet = require 'util.packet'
+local external_send = packet and packet.external_send
+
+local Protocols = {}
+---------------------------------------------
+--以下为连接的状态
+STATUS_NEVER = 1
+STATUS_AUTHED = 2
+STATUS_LOGGEDIN = 4
+STATUS_TRANSFER = 8
+
+---------------------------------------------
+--协议枚举
+#foreach( $m in $msgs )
+#if($m.Name.Substring(0,2)!="__")
+$str_tool.GetMsgType($m.Type)_$m.Name.ToUpper()		= $m.Cmd	-- $m.Desc	
+#end	
+#end
+
+#macro(pack_func_param_string_call_lua $m)
+#foreach($i in $m.MsgParas)##
+#if($m.MsgParas.count!=$velocityCount)
+#if($i.Name=='end')
+_end,##
+#else
+$i.Name ,##
+#end
+#else
+#if($i.Name=='end')
+_end##
+#else
+$i.Name##
+#end
+#end
+#end
+#end
+
+##结构体
+#foreach( $s in $strus)
+---------------------------------------------------------------------
+--$s.Desc
+$s.Name#**#_t = class('$s.Name#**#_t')
+
+function $s.Name#**#_t:read( input )
+
+	local ret
+#foreach( $m in $s.Members)
+#if($m.Type.ToLower() == "string")##
+	ret,self.$m.Name = input:readUTFByLen($m.ArrayLen)  --$m.Desc
+	if not ret then
+		return ret
+	end
+
+#elseif($m.ArrayLen>0)##
+	self.$m.Name = {}		--$m.Desc
+
+	local ret,len = input:readU16()
+	if not ret then
+		return false
+	end
+	
+	for i = 1,len,1
+	do
+		local member = 0
+		#if($m.Type == "int8" || $m.Type == "uint8")	
+			ret,member = input:readByte() 
+		#elseif($m.Type == "uint16")	
+			ret,member = input:readU16()
+		#elseif($m.Type == "int16")	
+			ret,member = input:readI16()
+		#elseif($m.Type == "int32")	
+			ret,member = input:readI32()
+		#elseif($m.Type == "uint32")
+			ret,member = input:readU32()
+		#elseif($m.Type == "double")
+			ret,member = input:readDouble()
+		#elseif($m.Type == "float")	
+			ret,member = input:readFloat()
+		#end
+		if not ret then
+			return false
+		end
+		table.insert(self.$m.Name , member)
+	end
+#elseif($m.Type == "int8" || $m.Type == "uint8")##
+	ret,self.$m.Name = input:readByte() --$m.Desc
+#elseif($m.Type == "uint16")## 
+	ret,self.$m.Name = input:readU16() --$m.Desc
+#elseif($m.Type == "int16")##	
+	ret,self.$m.Name = input:readI16() --$m.Desc
+#elseif($m.Type == "int32")##	
+	ret,self.$m.Name = input:readI32() --$m.Desc
+#elseif($m.Type == "uint32")##
+	ret,self.$m.Name = input:readU32() --$m.Desc
+#elseif($m.Type == "double")##
+	ret,self.$m.Name = input:readDouble() --$m.Desc
+#elseif($m.Type == "float")##
+	ret,self.$m.Name = input:readFloat() --$m.Desc
+#end##
+	if not ret then
+		return ret
+	end
+#end##
+
+	return input
+end
+
+function $s.Name#**#_t:write( output )
+#foreach( $m in $s.Members)
+	if(self.$m.Name == nil)then
+#if($m.Type.ToLower() == "string")
+		self.$m.Name = ''
+#elseif($m.ArrayLen>0)
+		self.$m.Name = {}
+#else
+		self.$m.Name = 0
+#end
+	end
+#if($m.Type.ToLower() == "string")##
+	output:writeUTFByLen(self.$m.Name , $m.ArrayLen ) 
+#elseif($m.ArrayLen>0)
+	output:writeI16(#self.$m.Name)
+	for i = 1,#self.$m.Name,1
+	do
+		#if($m.Type == "int8" )	
+			output:writeByte(self.$m.Name#**#[i])
+		#elseif($m.Type == "uint8")	
+			output:writeByte(self.$m.Name#**#[i])
+		#elseif($m.Type == "uint16")	
+			output:writeI16(self.$m.Name#**#[i])
+		#elseif($m.Type == "int16")	
+			output:writeI16(self.$m.Name#**#[i]) 
+		#elseif($m.Type == "int32")	
+			output:writeI32(self.$m.Name#**#[i])
+		#elseif($m.Type == "uint32")
+			output:writeU32(self.$m.Name#**#[i])
+		#elseif($m.Type == "double")
+			output:writeDouble(self.$m.Name#**#[i]) 
+		#elseif($m.Type == "float")	
+			output:writeFloat(self.$m.Name#**#[i])
+		#end
+	end
+#elseif($m.Type == "int8" )	
+	output:writeByte(self.$m.Name)
+#elseif($m.Type == "uint8")	
+	output:writeByte(self.$m.Name)
+#elseif($m.Type == "uint16")	
+	output:writeI16(self.$m.Name)
+#elseif($m.Type == "int16")	
+	output:writeI16(self.$m.Name)
+#elseif($m.Type == "int32")	
+	output:writeI32(self.$m.Name)
+#elseif($m.Type == "uint32")
+	output:writeU32(self.$m.Name)
+#elseif($m.Type == "double")
+	output:writeDouble(self.$m.Name)
+#elseif($m.Type == "float")	
+	output:writeFloat(self.$m.Name)
+#end
+	
+#end
+	return output
+end
+
+#end
+
+---------------------------------------------
+--协议打、解包
+##协议打包
+#foreach( $m in $msgs )
+#if($m.Name.Substring(0,2)!="__")
+
+-- $m.Desc	
+#if( $m.MsgParas.Count() == 0 )
+function Protocols.pack_$m.Name (  )
+#else
+function Protocols.pack_$m.Name ( #pack_func_param_string_call_lua($m))
+#end
+	local output = Packet.new($str_tool.GetMsgType($m.Type)_$m.Name.ToUpper())
+#foreach($i in $m.MsgParas)
+#if($i.Type == "String" && $i.IsArray)##
+	output:writeI16($i.Name)
+	for i = 1,#$i.Name,1
+	do
+		output:writeUTF($i.Name[i])
+	end
+#elseif($i.Type == "String")##
+	output:writeUTF($i.Name)
+#elseif($i.IsArray && $str_tool.IsStruct($i.Type))##
+	output:writeI16(#$i.Name)
+	for i = 1,#$i.Name,1
+	do
+		$i.Name[i]:write(output)
+	end
+#elseif($str_tool.IsStruct($i.Type))
+	$i.Name :write(output)
+#elseif($i.IsArray)
+	output:writeI16(#$i.Name)
+	for i = 1,#$i.Name,1
+	do
+		#if($i.Type == "int8" )##
+			output:writeByte($i.Name#**#[i])
+		#elseif($i.Type == "uint8")##
+			output:writeByte($i.Name#**#[i])
+		#elseif($i.Type == "uint16")##
+			output:writeI16($i.Name#**#[i])
+		#elseif($i.Type == "int16")##
+			output:writeI16($i.Name#**#[i]) 
+		#elseif($i.Type == "int32")##
+			output:writeI32($i.Name#**#[i])
+		#elseif($i.Type == "uint32")##
+			output:writeU32($i.Name#**#[i])
+		#elseif($i.Type == "double")##
+			output:writeDouble($i.Name#**#[i])
+		#elseif($i.Type == "float")##
+			output:writeFloat($i.Name#**#[i])
+		#end
+	end
+#elseif($i.Type == "int8" )##
+	output:writeByte($i.Name)
+#elseif($i.Type == "uint8")##
+	output:writeByte($i.Name)
+#elseif($i.Type == "uint16")##
+	output:writeI16($i.Name)
+#elseif($i.Type == "int16")##
+	output:writeI16($i.Name) 
+#elseif($i.Type == "int32")##
+	output:writeI32($i.Name)
+#elseif($i.Type == "uint32")##
+	output:writeU32($i.Name)
+#elseif($i.Type == "double")##
+	output:writeDouble($i.Name) 
+#elseif($i.Type == "float")##
+	output:writeFloat($i.Name)
+#end
+#end	
+	return output
+end
+
+-- $m.Desc	
+#if( $m.MsgParas.Count() == 0 )
+function Protocols.call_$m.Name ( playerInfo )
+	local output = Protocols.	pack_$m.Name (  )
+#else
+function Protocols.call_$m.Name ( playerInfo, #pack_func_param_string_call_lua($m))
+	local output = Protocols.	pack_$m.Name ( #pack_func_param_string_call_lua($m))
+#end
+	playerInfo:SendPacket(output)
+	output:delete()
+end
+
+##协议解包
+-- $m.Desc	
+function Protocols.unpack_$m.Name (pkt)
+	local input = Packet.new(nil, pkt)
+	local param_table = {}
+	local ret
+#foreach($i in $m.MsgParas)
+#if($i.Type == "String" && $i.IsArray)##
+	ret,len = input:readU16()
+	if not ret then
+		return false
+	end
+	param_table.$i.Name = {}
+	for i = 1,len,1
+	do
+		ret, str = input:readUTF()
+		if not ret then
+			return false
+		end		
+		table.insert(param_table.$i.Name,str)
+	end
+#elseif($i.Type == "String")
+	ret,param_table.$i.Name = input:readUTF()
+	if not ret then
+		return false
+	end	
+#elseif($i.Type == "ByteArray")##
+	--
+#elseif($i.IsArray && $str_tool.IsStruct($i.Type))##
+	ret,len = input:readU16()
+	if not ret then
+		return false
+	end
+	param_table.$i.Name = {}
+	for i = 1,len,1
+	do
+		local stru = $i.Type#**#_t .new()
+		if(stru:read(input)==false)then
+			return false
+		end
+		table.insert(param_table.$i.Name,stru)
+	end
+#elseif($str_tool.IsStruct($i.Type))
+	param_table.$i.Name = $i.Type#**#_t .new()
+	if(param_table.$i.Name :read(input)==false)then
+		return false
+	end
+#elseif($i.IsArray)
+	param_table.$i.Name = {}
+	ret,len = input:readU16()
+	if not ret then
+		return false
+	end
+	
+	for i = 1,len,1
+	do
+		#if($i.Type == "int8" )##	
+			ret,param_table.$i.Name[i] = input:readByte()
+		#elseif($i.Type == "uint8")##
+			ret,param_table.$i.Name[i] = input:readByte()
+		#elseif($i.Type == "uint16")##
+			ret,param_table.$i.Name[i] = input:readU16()
+		#elseif($i.Type == "int16")##
+			ret,param_table.$i.Name[i] = input:readI16()
+		#elseif($i.Type == "int32")##
+			ret,param_table.$i.Name[i] = input:readI32()
+		#elseif($i.Type == "uint32")##
+			ret,param_table.$i.Name[i] = input:readU32()
+		#elseif($i.Type == "double")##
+			ret,param_table.$i.Name[i] = input:readDouble()
+		#elseif($i.Type == "float")##	
+			ret,param_table.$i.Name[i] = input:readFloat()
+		#end
+		if not ret then
+			return false
+		end
+	end
+#elseif($i.Type == "int8" || $i.Type == "uint8")##
+	ret,param_table.$i.Name = input:readByte()
+	if not ret then
+		return false
+	end
+#elseif($i.Type == "uint16")##
+	ret,param_table.$i.Name = input:readU16()
+	if not ret then
+		return false
+	end
+#elseif($i.Type == "int16")##
+	ret,param_table.$i.Name = input:readI16()
+	if not ret then
+		return false
+	end
+#elseif($i.Type == "int32")##
+	ret,param_table.$i.Name = input:readI32()
+	if not ret then
+		return false
+	end	
+#elseif($i.Type == "uint32")##
+	ret,param_table.$i.Name = input:readU32()
+	if not ret then
+		return false
+	end	
+#elseif($i.Type == "double")##
+	ret,param_table.$i.Name = input:readDouble()
+	if not ret then
+		return false
+	end	
+#elseif($i.Type == "float")##
+	ret,param_table.$i.Name = input:readFloat()
+	if not ret then
+		return false
+	end
+#end
+#end	
+
+#if($m.MsgParas.count>0)
+	return true,param_table##
+#else	
+	return true,{}
+#end
+	
+
+end
+
+#end	
+#end
+
+
+function Protocols:SendPacket(pkt)
+	external_send(self.ptr_player_data or self.ptr, pkt.ptr)
+end
+
+function Protocols:extend(playerInfo)
+	playerInfo.SendPacket = self.SendPacket
+#foreach( $m in $msgs )
+#if($m.Name.Substring(0,2)!="__")
+	playerInfo.call_$m.Name = self.call_$m.Name
+#end
+#end
+end
+
+local unpack_handler = {
+
+#foreach( $m in $msgs )
+#if($m.Name.Substring(0,2)!="__")
+[$str_tool.GetMsgType($m.Type)_$m.Name.ToUpper()] =  Protocols.unpack_$m.Name,
+#end	
+#end
+
+}
+
+function Protocols.unpack_packet(opcode,pkt)
+	return unpack_handler[opcode](pkt)
+end
+
+return Protocols

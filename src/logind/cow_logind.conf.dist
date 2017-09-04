@@ -1,0 +1,79 @@
+#网关服务IP
+netgd_host = 127.0.0.1
+#网关服务端口
+netgd_port = 10086
+
+#中心服IP
+centd_host = 127.0.0.1
+#中心服端口
+centd_port = 10087
+
+#角色数据库连接字符串
+db_chars_log = "log/logind_db_chars.txt"
+db_character = "127.0.0.1;27017;dev;asdf;char"
+
+#日志数据库连接字符串
+logdb_log = "log/logind_logdb_chars.txt"
+logdb_character = "127.0.0.1;27017;dev;asdf;char"
+
+#日志文件名称
+log_name = logind
+log_folder = log/
+
+#日志等级
+log_level = 0
+
+#素材文件夹路径
+data_folder = "../../../contrib/template/"
+
+#屏蔽词库
+load_pingbi = Y
+
+#地图文件夹
+map_folder = "../../../contrib/maps/"
+
+#脚本文件夹
+script_folder = "../../../contrib/scripts/"
+
+#备份路径
+backup_hdd_path = "./var"
+
+#玩家数据保存路径
+player_data_hdd_path = "./data"
+
+#平台ID
+platform_id = 2
+
+#与平台通讯密钥
+login_key = "84adc98ee63b26e2063a796ac982ad77"
+
+#服务器ID
+server_id = 1
+
+#轮询等待玩家是否可以进入游戏的时间间隔
+login_queue_interval = 3000
+
+#中心服检测版本需求,20秒检测一次,单位秒
+versions_requirements_internal = 20
+
+#是否校验session key的时间
+check_session_key_time = "Y"
+
+#gm开关
+gm_open = N
+
+#服务器类型 0:游戏服  1:pk服
+server_type = 0
+#世界服ip
+world_host = 192.168.30.11
+#世界服端口号
+world_port = 2500
+
+#等待场景服的准备的最多时间
+scened_collapse_time_out=1
+
+#外部web接口
+ext_web_interface = ""
+
+#配置服web地址配置
+conf_svr = ""

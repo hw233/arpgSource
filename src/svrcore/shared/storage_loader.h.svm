@@ -1,0 +1,16 @@
+#ifndef _STORAGE_LOADER_H_
+#define _STORAGE_LOADER_H_
+\#include <string>
+\#include <vector>
+\#include <shared/storage_strus.h>
+\#include "MemoryDB.h"
+
+#foreach($m in $server_tables)
+TEA_SVRCORE_SPEC extern MemoryDB< $m.Name >  $m.Name#**#_db;
+#end
+
+#foreach($m in $server_tables)
+TEA_SVRCORE_SPEC bool Load_$m.Name (lua_State *L);
+#end
+
+#endif

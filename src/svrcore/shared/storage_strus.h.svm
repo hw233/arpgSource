@@ -1,0 +1,45 @@
+#ifndef _STORAGE_STRUS_H_
+#define _STORAGE_STRUS_H_
+\#include <comm/common_stl.h>
+
+#foreach($m in $server_tables)
+#foreach($f in $m.ServerFields)
+#if($f.SuperData)
+struct $m.Name#**#_$f.Name{
+uint32 id;
+};
+#end
+#end
+#end
+
+#foreach($m in $server_tables)
+
+#foreach($f in $m.ServerFields)
+#if($f.SuperData)
+const uint32 $m.Name.ToUpper()#**#_$f.Name.ToUpper()#**#_LEN = $f.DataLen * sizeof(uint32)/sizeof( $m.Name#**#_$f.Name );
+#end
+#end
+
+struct $m.Name
+{
+#foreach($f in $m.ServerFields)
+#if($f.type == "varchar")
+	char $f.Name [$f.DataLen];		//$f.Remark		
+	
+#elseif($f.SuperData )
+	union
+	{
+		$f.type $f.Name [$f.DataLen];	//$f.Remark
+		$m.Name#**#_$f.Name s_$f.Name[ $m.Name.ToUpper()#**#_$f.Name.ToUpper()#**#_LEN ];
+	};
+	
+	
+#elseif($f.type == "uint32"||$f.type == "int"||$f.type == "float")	
+	$f.type $f.Name;				//$f.Remark	
+	
+#end	
+#end
+};
+#end
+
+#endif

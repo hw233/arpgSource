@@ -1,0 +1,124 @@
+#ifndef _EXTERNAL_PROTOCOL_H_
+#define _EXTERNAL_PROTOCOL_H_
+
+\#include <svrcore-internal.h>
+#define EXTERNAL_PACKET_STR_ARRAY_MAX_LEN 1000
+
+#macro(pack_func_param_string_call $m)
+#foreach($i in $m.MsgParas)##
+#if($i.type == "String")##
+,char const*$i.Name##
+#elseif($i.type == "ByteArray")##
+,packet *$i.Name##
+#elseif($i.IsArray)##
+,const vector< $i.type > &$i.Name ##$i.type *$i.Name , uint16 len_$velocityCount##
+#elseif($str_tool.IsStruct($i.type))##
+, $i.type *$i.Name##
+#else##
+,$i.type $i.Name##
+#end##
+#end
+#end
+
+
+
+###elseif($i.IsArray&&str_tool.IsStruct($i.type))
+##	, $i.type **$i.Name , uint16*len
+###elseif(str_tool.IsStruct($i.type))
+##	, $i.type **$i.Name
+//////////////////////////////////////////////////////////////////////////
+/// List of Opcodes
+enum Opcodes
+{
+#foreach( $m in $msgs )
+#if($m.Name.Substring(0,2)!="__")
+	$str_tool.GetMsgType($m.Type)_$m.Name.ToUpper()		= $m.Cmd,	$m.Desc	//$m.Name
+#end	
+#end
+	NUM_MSG_TYPES
+};
+
+CPPAPI const char* GetOpcodeName(uint16 opt);
+
+\#if defined( __GNUC__ )
+#	pragma pack(1)
+\#else
+#	pragma pack(push,1)
+#endif
+
+#foreach( $s in $strus)
+$s.Desc
+typedef struct $s.Name#**#_t{
+#foreach( $m in $s.Members)
+#if($m.Type.ToLower() == "string")
+	char		$m.Name[$m.ArrayLen];		$m.Desc
+#elseif($m.ArrayLen>0)
+	$m.Type		$m.Name[$m.ArrayLen];		$m.Desc
+#else
+	$m.Type		$m.Name;		$m.Desc
+#end	
+#end
+}$s.Name;
+
+#end
+
+\#if defined( __GNUC__ )
+#	pragma pack()
+\#else
+#	pragma pack(pop)
+#endif
+
+/*TEA_SVRCORE_API int   pack_update_object(packet**dst,list_t *block_list);*/
+
+///////////////////////////////////////////////////////////////////////////////
+#foreach( $m in $msgs )
+#if($m.Name.Substring(0,2)!="__"&&$m.Name!="update_object")
+$m.desc
+TEA_SVRCORE_API	int   pack_$m.Name (packet**dst #pack_func_param_string($m));
+TEA_SVRCORE_API  int   unpack_$m.Name (packet *src #unpack_func_param_string($m));
+#end	
+#end
+/*rand send msg*/
+TEA_SVRCORE_API	int   pack_rand_send_msg (packet**dst ,const char* msg);
+#ifdef __cplusplus
+
+\#include <fastdelegate/FastDelegate.h>
+TEA_SVRCORE_API packet_ptr external_protocol_new_packet(int optcode);
+TEA_SVRCORE_API int external_protocol_free_packet(packet_ptr pkt);
+
+typedef fastdelegate::FastDelegate1<packet&> Delegate_Sendpackt;
+
+#foreach( $m in $msgs )
+#if($m.Name.Substring(0,2)!="__"&&$m.Name!="update_object")
+$m.desc
+__INLINE__ int Call_$m.Name (Delegate_Sendpackt SendPacket #pack_func_param_string_call($m))
+{
+	packet *dst = external_protocol_new_packet($str_tool.GetMsgType($m.Type)_$m.Name.ToUpper());
+		
+#foreach($i in $m.MsgParas)
+#if($i.type == "String")
+	packet_write_str(dst,$i.Name);		
+#elseif($i.type == "ByteArray")
+	packet_write(dst, (char *)$i.Name ->content, $i.Name ->wpos);
+#elseif($i.IsArray)
+	*dst << $i.Name;
+#elseif($str_tool.IsStruct($i.type))
+	packet_write(dst,(char*)$i.Name,sizeof($i.type));
+#else
+	packet_write(dst,(char *)&$i.Name,sizeof($i.type));
+#end
+#end			
+	update_packet_len(dst);
+	
+	SendPacket(*dst);
+	external_protocol_free_packet(dst);
+	return 0;	
+}
+
+#end	
+#end
+	
+#endif
+
+#endif
+
